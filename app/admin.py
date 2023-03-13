@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Client, Shop, Product
+from .models import Client, Shop, Product, Contact
 
 # Register your models here.
 
@@ -16,3 +16,8 @@ class ShopTable(admin.ModelAdmin):
 @admin.register(Product)
 class ProductTable(admin.ModelAdmin):
     list_display = ('product_owner', 'product_shop', 'product_name', 'image', 'delivery', 'instock', 'new_price', 'old_price', 'description')
+    
+    
+@admin.register(Contact)
+class ContactTable(admin.ModelAdmin):
+    list_display = ('name', 'email', 'message')

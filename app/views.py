@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
-from .models import Client, Shop, Product
+from .models import Client, Shop, Product, Contact
 from .forms import ClientForm, ShopForm, ProductForm
 
 # Create your views here.
@@ -196,6 +196,16 @@ def logOut(request):
 
 # Other
 def contactUs(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        message = request.POST['message']
+        
+        information = Contact.objects.create(name=name, email=email, message=message)
+        information.save()
+        
+        messages.info(request, 'Message send successfully')
+        return redirect('contact_us')
     
     return render(request, 'app/menu/contact.html')
 

@@ -364,6 +364,9 @@
                             </div>
                             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
                                 <div class="account-content">
+                                    {% for message in messages %}
+                                    <p style="color: green;">{{message}}</p>
+                                    {% endfor %}
                                     <form action="" method="POST">
                                         {% csrf_token %}
                                         <div class="row">
