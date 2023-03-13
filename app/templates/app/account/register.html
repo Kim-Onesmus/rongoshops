@@ -1,0 +1,105 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+<!-- register.html  03:24:53 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Ru-Shops</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    
+    <!-- CSS 
+    ========================= -->
+   
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+    
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+</head>
+
+<body>
+	<section class="account">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-10">
+					<div class="account-contents" style="background: url('/static/images/signup.jpg'); background-size: cover;">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class="account-thumb">
+                                    <h2>Register now</h2>
+                                    <p>It is more advantage to have an Account because:
+                                        <ol style="text-align:start;">
+                                            <li>You can make a shop</li>
+                                            <li>You can shop in the site</li>
+                                            <li>You add products to cat and wishlist</li>
+                                            <li>No limitations to some parts of the site</li>
+                                        </ol>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class="account-content">
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                        {% for text in messages %}
+                                        {{text}}
+                                        {% endfor %}
+                                        <div class="single-acc-field">
+                                            <label for="name">Username</label>
+                                            <input type="text" id="name" name="username" placeholder="Enter username" required>
+                                        </div>
+                                        <div class="single-acc-field">
+                                            <label for="email">Email</label>
+                                            <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+                                        </div>
+                                        <div class="single-acc-field">
+                                            <label for="password">Password</label>
+                                            <input type="password" name="password" id="password" placeholder="At least 6 Charecter" required>
+                                        </div>
+                                        <div class="single-acc-field">
+                                            <label for="password">Confirm Password</label>
+                                            <input type="password" name="password1" id="password" placeholder="Retype password" required>
+                                        </div>
+                                        <div class="single-acc-field boxes">
+                                            <input type="checkbox" id="checkbox">
+                                            <label for="checkbox">I'm not a robot</label>
+                                        </div>
+                                        <div class="single-acc-field">
+                                            <button type="submit">Register now</button>
+                                        </div>
+                                        <a href="{% url 'login' %}">Already account? Login</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+<!-- JS
+============================================ -->
+
+
+<!-- Plugins JS -->
+<script src="{% static 'js/plugins.js' %}"></script>
+
+<!-- Main JS -->
+<script src="{% static 'js/main.js' %}"></script>
+
+
+
+</body>
+
+<!-- register.html  03:24:53 GMT -->
+</html>

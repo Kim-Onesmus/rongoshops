@@ -1,0 +1,9 @@
+{% block content %}
+<form style="padding: 50px; text-align: center;" method="POST" action="">
+    {% csrf_token %}
+    <p>{{user.username}}, Are you sure you want to Log Out?</p>
+    <a href="{{request.META.HTTP_REFERER}}">Go Back</a> &nbsp;&nbsp;&nbsp;
+    <input type="submit" value="Log Out"/>
+</form>
+
+{% endblock content %}

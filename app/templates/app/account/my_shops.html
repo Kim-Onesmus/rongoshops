@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/admin1.css' %}">
+    <title>Rongo Shops</title>
+</head>
+
+<body>
+    <p style="text-align: center;color: black;font-size: 20px;font-weight: bold;">My Shops</p>
+    <hr>
+    <div class="members">
+        <div style="width: 95%; margin: 0% auto;" class="welcome">
+            <div class="loopp1">                
+                <div class="loop1">
+                    <div class="data1">
+                        <table border="none" style=" border-collapse: collapse; width: 100%;">
+                            <tr style="background-color: dodgerblue; padding: 20px;">
+                                <th>
+                                    <b>Name</b>
+                                </th>
+                                <th>
+                                    <b>Image</b>
+                                </th>
+                                <th style="padding: 10px;">
+                                    <u><b>Add product</b></u>
+                                </th>
+                                <th >
+                                    <u><b>View product</b></u>
+
+                                  
+                                </th>
+                                <th>
+                                    <u><b>Update</b></u>
+               
+                                 
+                                </th>
+                                <th>
+                                    <u><b>Delete</b></u>
+                                </th>
+                            </tr>
+                            <tbody>
+                                {% for data in shop %}
+                                {% if request.user == data.owner %}
+                                <tr style="margin: 0% auto; text-align: center;">
+                                    <td>{{data.name}}</td>
+                                    <td><img style="width: 100px;height: 100px;" src="{{data.image.url}}" alt=""></td>
+                                    <td><a href="{% url 'add_product' data.id %}">Add Products</a></td>
+                                    <td><a href="{% url 'shopproduct' data.id %}">View Products</a></td>
+                                    <td><a class="button" href="{% url 'update-shop' data.id %}">Update</a></td>
+                                    <td><a class="button1" href="{% url 'delete-shop' data.id %}">Delete</a></td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <p style="text-align: center;color: black;font-size: 20px;font-weight: bold;">My Products</p>
+    <hr>
+    <br><br>
+    <div class="members">
+        <div style="width: 95%; margin: 0% auto;" class="welcome">
+            <div class="loopp1">                
+                <div class="loop1">
+                    <div class="data1">
+                        <table border="none" style=" border-collapse: collapse; width: 100%;">
+                            <tr style="background-color: dodgerblue; padding: 20px;">
+                                <th>
+                                    <b>Product Shop</b>
+                                </th>
+                                <th>
+                                    <b>Product Name</b>
+                                </th>
+                                <th style="padding: 10px;">
+                                    <u>Image</u>
+                                </th>
+                                <th >
+                                    <u>Instock</u>
+
+                                  
+                                </th>
+                                <th>
+                                    <u>New Price</u>
+                                </th>
+                                <th>
+                                    <u>Old Price</u>
+                                </th>
+                                <th>
+                                    <u>Update</u>
+                                </th>
+                                <th>
+                                    <u>Delete</u>
+                                </th>
+                            </tr>
+                            <tbody>
+                                {% for data in product %}
+                                {% if request.user == data.product_owner %}
+                                <tr style="margin: 0% auto; text-align: center;">
+                                    <td>{{data.product_shop}}</td>
+                                    <td>{{data.product_name}}</td>
+                                    <td><img style="width: 100px;height: 100px;" src="{{data.image.url}}" alt=""></td>
+                                    <td>{{data.instock}}</td>
+                                    <td>Ksh. {{data.new_price}}</td>
+                                    <td>Ksh. {{data.old_price}}</td>
+                                    <td><a class="button" href="{% url 'update-product' data.id %}">Update</a></td>
+                                    <td><a class="button1" href="{% url 'delete-product' data.id %}">Delete</a></td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+</body>
+
+</html>
