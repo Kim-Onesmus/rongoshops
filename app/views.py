@@ -3,6 +3,10 @@ from django.contrib.auth.models import auth, User
 from django.contrib import messages
 from .models import Client, Shop, Product, Contact
 from .forms import ClientForm, ShopForm, ProductForm
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+
 
 # Create your views here.
 
@@ -10,8 +14,21 @@ from .forms import ClientForm, ShopForm, ProductForm
 
 
 def Home(request):
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    product = Product.objects.filter(
+        # Q(product_owner__icontains=q) |
+        # Q(product_shop__icontains=q) |
+        Q(product_name__icontains=q) |
+        Q(delivery__icontains=q) |
+        Q(new_price__icontains=q) |
+        Q(old_price__icontains=q) |
+        Q(description__icontains=q)
+    )
+    
+    
+    product_count = product.count()
     shop = Shop.objects.all
-    context = {'shop':shop}
+    context = {'shop':shop, 'product_count':product_count, 'product':product}
     return render(request, 'app/index.html', context)
 
 # Hot
@@ -20,28 +37,46 @@ def Hot(request):
 
 # Categories
 def Fashion(request):
-    pass
+    shop = Shop.objects.all
+    context = {'shop':shop}
+    return render(request, 'app/categories/fashion.html', context)
 
 def Electronics(request):
-    pass
+    shop = Shop.objects.all
+    context = {'shop':shop}
+    return render(request, 'app/categories/electronics.html', context)
+
 
 def Jewellery(request):
-    pass
+    shop = Shop.objects.all
+    context = {'shop':shop}
+    return render(request, 'app/categories/jewellery.html', context)
+
 
 def Delicasies(request):
-    pass
+    shop = Shop.objects.all
+    context = {'shop':shop}
+    return render(request, 'app/categories/delicasies.html', context)
 
 def Automotive(request):
-    pass
+    shop = Shop.objects.all
+    context = {'shop':shop}
+    return render(request, 'app/categories/automotive.html', context)
 
 def Grocery(request):
-    pass
+    shop = Shop.objects.all
+    context = {'shop':shop}
+    return render(request, 'app/categories/grocery.html', context)
 
 def Cyber(request):
-    pass
+    shop = Shop.objects.all
+    context = {'shop':shop}
+    return render(request, 'app/categories/cyber.html', context)
 
 def Retail(request):
-    pass
+    shop = Shop.objects.all
+    context = {'shop':shop}
+    return render(request, 'app/categories/retail.html', context)
 
 # Account
 # <=====================================================>
@@ -63,7 +98,7 @@ def Makeshop(request):
         form = ShopForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            
+            return redirect('my_shop')
     context = {'form':form}
     return render(request, 'app/account/makeshop.html', context)
  
@@ -76,7 +111,7 @@ def addProduct(request, pk):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('my_shop')
 
     context = {'form':form}
     return render(request, 'app/account/add_product.html', context)

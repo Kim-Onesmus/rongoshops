@@ -6,11 +6,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>RU-Shops</title>
+    <title>RongoShops</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logoo.png' %}">
     
     <!-- CSS 
     ========================= -->
@@ -21,7 +21,6 @@
     
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
 </head>
@@ -50,7 +49,7 @@
                             <p>Hello {{user.username}}</p>
                         </div>
                         <div class="support_info">
-                            <p>Any Enquiry: <a href="tel:">+254792613079</a></p>
+                            <p>Any Enquiry: <a href="tel:+254792613079">+254792613079</a></p>
                         </div>
                         <div class="top_right text-right">
                             <ul>
@@ -58,22 +57,22 @@
                                <li><a href="{% url 'logout' %}"> LogOut </a></li> 
                             </ul>
                         </div> 
-                        <div class="search_container">
+                        <!-- <div class="search_container">
                            <form action="#">
                                 <div class="search_box">
                                     <input placeholder="Search product..." type="text">
                                     <button type="submit">Search</button> 
                                 </div>
                             </form>
-                        </div> 
+                        </div>  -->
                         
                         <div class="middel_right_info">
                             <div class="mini_cart_wrapper">
                                 <a href="javascript:void(0)"><img style="width: 30px; height: 30px;" src="{% static 'images/icon/wish.png' %}" alt=""></a>
-                                <span class="cart_quantity">8</span>
+                                <span class="cart_quantity">0</span>
                                 <div class="mini_cart">
                                     <div class="cart_item">
-                                       <div class="cart_img">
+                                       <!-- <div class="cart_img">
                                            <a href="#"><img src="{% static 'images/s-product/product.jpg' %}" alt=""></a>
                                        </div>
                                         <div class="cart_info">
@@ -82,18 +81,21 @@
                                         </div>
                                         <div class="cart_remove">
                                             <a href="#"><i class="ion-android-close"></i></a>
-                                        </div>
+                                        </div> -->
+                                        <p style="text-align: center;color: red;">
+                                            This service is not available at the moment, we are working on that
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <div class="mini_cart_wrapper">
                                 <a href="javascript:void(0)"><img src="{% static 'images/shopping-bag.png' %}" alt=""></a>
-                                <span class="cart_quantity">9</span>
+                                <span class="cart_quantity">0</span>
                                 <!--mini cart-->
                                  <div class="mini_cart">
                                     <div class="cart_item">
-                                       <div class="cart_img">
+                                       <!-- <div class="cart_img">
                                            <a href="#"><img src="{% static 'images/s-product/product.jpg' %}" alt=""></a>
                                        </div>
                                         <div class="cart_info">
@@ -102,7 +104,11 @@
                                         </div>
                                         <div class="cart_remove">
                                             <a href="#"><i class="ion-android-close"></i></a>
-                                        </div>
+
+                                        </div> -->
+                                        <p style="text-align: center;color: red;">
+                                            This service is not available at the moment, we are working on that
+                                        </p>
                                     </div>
                                 </div>
                                 <!--mini cart end-->
@@ -113,11 +119,11 @@
                                 <li class="menu-item-has-children active">
                                     <a href="/">Home</a>
                                 </li>
-                                <li class="menu-item-has-children">
+                                <!-- <li class="menu-item-has-children">
                                     <a href="{% url 'hot' %}">Hot</a>
-                                </li>
+                                </li> -->
                                 <li class="menu-item-has-children">
-                                    <a href="">Categories </a>
+                                    <a href="#">Categories </a>
                                     <ul class="sub-menu">
                                         <li><a href="{% url 'fashion' %}">Fashion</a></li>
                                         <li><a href="{% url 'electronics' %}">Electronis</a></li>
@@ -149,10 +155,11 @@
                         </div>
 
                         <div class="Offcanvas_footer">
-                            <span><a href="#"><i class="fa fa-envelope-o"></i> kimonesmuske@gmail.com </a></span>
+                            <span><a href="#"><i class="fa fa-envelope-o"></i> onesmuskimanzi254@gmail.com </a></span>
                             <ul>
-                                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a style="background-color: green;" class="whatsapp" href="" title="Whatsapp"><i class="fa fa-whatsapp"></i></a></li> Join Whatsapp Group <br><br>
+                                <li class="facebook"><a href="https://www.instagram.com/kim_onesmuske/"><i class="fa fa-instagram"></i></a></li> Instagram <br><br>
+                                <li class="twitter"><a href="https://twitter.com/Kiim844"><i class="fa fa-twitter"></i></a></li> Twitter <br><br>
                             </ul>
                         </div>
                     </div>
@@ -170,7 +177,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-6">
                             <div class="support_info">
-                                <p>Email: <a href="mailto:">kimonesmuske@gmail.com</a></p>
+                                <p>Email: <a href="mailto:">onesmuskimanzi254@gmail.com</a></p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
@@ -193,26 +200,26 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-6">
                             <div class="logo">
-                                <a href="/"><img src="{% static 'images/logo/logo.png' %}" alt=""></a>
+                                <a href="/"><img src="{% static 'images/logo1.png' %}" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-6">
                             <div class="middel_right">
-                                <div class="search_container">
+                                <!-- <div class="search_container">
                                    <form action="#">
                                         <div class="search_box">
                                             <input placeholder="Search product..." type="text">
                                             <button type="submit">Search</button> 
                                         </div>
                                     </form>
-                                </div>
+                                </div>  -->
                                 <div class="middel_right_info">
                                     <div class="mini_cart_wrapper">
                                         <a href="javascript:void(0)"><img style="width: 30px; height: 30px;" src="{% static 'images/icon/wish.png' %}" alt=""></a>
-                                        <span class="cart_quantity">8</span>
+                                        <span class="cart_quantity">0</span>
                                         <div class="mini_cart">
                                             <div class="cart_item">
-                                               <div class="cart_img">
+                                               <!-- <div class="cart_img">
                                                    <a href="#"><img src="{% static 'images/s-product/product.jpg' %}" alt=""></a>
                                                </div>
                                                 <div class="cart_info">
@@ -229,20 +236,21 @@
                                                 </div>
                                                 <div class="cart_button">
                                                     <a href="checkout.html">Checkout</a>
-                                                </div>
-
+                                                </div> -->
+                                                <p style="text-align: center;color: red;">
+                                                    This service is not available at the moment, we are working on that
+                                                </p>
                                             </div>
-
                                         </div>
                                     </div>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <div class="mini_cart_wrapper">
                                         <a href="javascript:void(0)"><img src="{% static 'images/shopping-bag.png' %}" alt=""></a>
-                                        <span class="cart_quantity">9</span>
+                                        <span class="cart_quantity">0</span>
                                         <!--mini cart-->
                                          <div class="mini_cart">
                                             <div class="cart_item">
-                                               <div class="cart_img">
+                                               <!-- <div class="cart_img">
                                                    <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
                                                </div>
                                                 <div class="cart_info">
@@ -260,7 +268,10 @@
                                                 <div class="cart_button">
                                                     <a href="checkout.html">Checkout</a>
                                                 </div>
-                                            </div>
+                                            </div> -->
+                                            <p style="text-align: center;color: red;">
+                                                This service is not available at the moment, we are working on that
+                                            </p>
                                         </div>
                                         <!--mini cart end-->
                                     </div>
@@ -270,6 +281,7 @@
                     </div>
                 </div>
             </div>
+            <br>
             <!--header middel end-->
             <!--header bottom satrt-->
             <div class="main_menu_area">
@@ -280,7 +292,7 @@
                                 <nav>  
                                     <ul>
                                         <li><a href="/">home</a></li>
-                                        <li><a href="{% url 'hot' %}">Hot</a></li>
+                                        <!-- <li><a href="{% url 'hot' %}">Hot</a></li> -->
                                         
                                         <li><a class="active" href="#">Categories <i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
@@ -319,42 +331,28 @@
     </header>
     <!--header area end-->
 
-
-    <!--slider area start-->
-    <section class="slider_section d-flex align-items-center">
-        <div class="slider_area owl-carousel">
-            <div class="single_slider d-flex align-items-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-6 col-md-6">
-                            <div class="slider_content">
-                                <h1 style="color: red;font-size: 16px;"><u>Hot Products</u></h1>
-                                <h1>Next level of Drone</h1>
-                                <h2>Insane Quality for use</h2>
-                                <p>Special offer <span> 20% off </span> this week</p>
-                                <a class="button" href="product-details.html">Buy now</a>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-md-6">
-                            <div class="slider_content">
-                                <img src="{% static 'images/product/1.png' %}" alt="">
-                            </div>
-                        </div>
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">   
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="/">home</a></li>
+                            <li>{{shop.name}} {{shop.category}} products</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-<body>
-    <p style="text-align: center;color: black;font-size: 20px;font-weight: bold;">{{shop.name}} {{shop.category}} products</p>
-    <hr>
+        </div>         
+    </div>
+    <br>
     <div class="container_data">
         {% for products in all_products %}
         <a href="{% url 'productdetails' products.id %}">
             <div style="width: 150px;" class="box_product">
-                <div style="width: 140px; height: auto;margin: 0% auto;" class="group_i">
-                    <img src="{{products.image.url}}">
+                <div style="width: 140px; height: 150px;margin: 0% auto;" class="group_i">
+                    <img style="width: 130px; height: 130px;" src="{{products.image.url}}">
                 </div>
                 <p style="text-align: start; color: black; font-size: 13px;" class="price_text">{{products.product_name}}<span style="color: black;"></span></p>
                     <div class="tranding-pro-price">

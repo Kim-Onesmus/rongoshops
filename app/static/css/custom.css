@@ -218,7 +218,7 @@ img {
 	content: "";
 	height: 100%;
 	width: 100%;
-	background-image: linear-gradient(0deg, #de8f0f 50%, #0d9027 50%);
+	background-image: linear-gradient(0deg, #023e13 50%, #7c0b3a 50%);
 	top: 0;
 	left: 0;
 	opacity: 0.8;
@@ -814,21 +814,14 @@ section.shipping_area {
     display: inline-block;
 }
 
-.single-tranding {
-    width: 340px;
-    height: 350px;
-    margin-bottom: 23px;
-    margin: 0% auto;
-    justify-content: center;
-    text-align: center;
-}
-
 
 .single-tranding a:hover h3 {
     text-decoration: underline;
     color: #3E51EB;
 }
-.box_shop {
+.single-tranding {
+    width: 300px;
+    height: 350px;
     margin: 20px;
     width: 100%;
     background-color: #ffffff;
@@ -837,8 +830,14 @@ section.shipping_area {
     box-shadow: 0px 0 30px 10px #727070;
     margin-bottom: 20px;
     display: inline-block;
+    margin-bottom: 23px;
+    margin: 0% auto;
+    justify-content: center;
+    text-align: center;
 }
-.tranding-pro-img {
+.tranding-pro-img img {
+    width: 200px;
+    height: 200px;
     margin-bottom: 20px;
 }
 

@@ -51,8 +51,8 @@
                                     <form action="" method="POST" enctype="multipart/form-data">
                                         {% csrf_token %}
                                         <div class="single-acc-field">
-                                            <label for="name">Shop Owner</label>
-                                            {{form.owner}}
+                                            <!-- <label for="name">Shop Owner</label> -->
+                                            {{form.owner.as_hidden}}
                                         </div>
                                         <div class="single-acc-field">
                                             <label for="name">Name of Shop</label>

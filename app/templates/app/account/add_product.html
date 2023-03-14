@@ -34,6 +34,7 @@
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class="account-thumb">
+                                    <a style="background-color: green" class="btn btn-warning" href="/"> &#8592; Go To Home</a>
                                     <h2>Add products</h2>
                                     <p>Thanks {{request.user}} for making a shop with us, you can add products in your shop to start selling and advertising your goods</p>
                                 </div>
@@ -43,12 +44,12 @@
                                     <form action="" method="POST" enctype="multipart/form-data">
                                         {% csrf_token %}
                                         <div class="single-acc-field">
-                                            <label for="name">Product Oner</label>
-                                            {{form.product_owner}}
+                                            <!-- <label for="name">Product Owner</label> -->
+                                            {{form.product_owner.as_hidden}}
                                         </div>
                                         <div class="single-acc-field">
-                                            <label for="email">Shop Product</label>
-                                            {{form.product_shop}}
+                                            <!-- <label for="email">Shop Product</label> -->
+                                            {{form.product_shop.as_hidden}}
                                         </div>
                                         <div class="single-acc-field">
                                             <label for="password">Product name</label>

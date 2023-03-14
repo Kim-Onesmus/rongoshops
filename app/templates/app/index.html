@@ -6,11 +6,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>RU-Shops</title>
+    <title>RongoShops</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <!-- <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logo1.png' %}"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logoo.png' %}">
     
     <!-- CSS 
     ========================= -->
@@ -49,7 +49,7 @@
                             <p>Hello {{user.username}}</p>
                         </div>
                         <div class="support_info">
-                            <p>Any Enquiry: <a href="tel:">+254792613079</a></p>
+                            <p>Any Enquiry: <a href="tel:+254792613079">+254792613079</a></p>
                         </div>
                         <div class="top_right text-right">
                             <ul>
@@ -58,9 +58,9 @@
                             </ul>
                         </div> 
                         <div class="search_container">
-                           <form action="#">
+                           <form action="" method="GET">
                                 <div class="search_box">
-                                    <input placeholder="Search product..." type="text">
+                                    <input type="text" name="q" placeholder="Search......" required>
                                     <button type="submit">Search</button> 
                                 </div>
                             </form>
@@ -72,7 +72,7 @@
                                 <span class="cart_quantity">0</span>
                                 <div class="mini_cart">
                                     <div class="cart_item">
-                                       <div class="cart_img">
+                                       <!-- <div class="cart_img">
                                            <a href="#"><img src="{% static 'images/s-product/product.jpg' %}" alt=""></a>
                                        </div>
                                         <div class="cart_info">
@@ -81,7 +81,10 @@
                                         </div>
                                         <div class="cart_remove">
                                             <a href="#"><i class="ion-android-close"></i></a>
-                                        </div>
+                                        </div> -->
+                                        <p style="text-align: center;color: red;">
+                                            This service is not available at the moment, we are working on that
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +95,7 @@
                                 <!--mini cart-->
                                  <div class="mini_cart">
                                     <div class="cart_item">
-                                       <div class="cart_img">
+                                       <!-- <div class="cart_img">
                                            <a href="#"><img src="{% static 'images/s-product/product.jpg' %}" alt=""></a>
                                        </div>
                                         <div class="cart_info">
@@ -101,7 +104,11 @@
                                         </div>
                                         <div class="cart_remove">
                                             <a href="#"><i class="ion-android-close"></i></a>
-                                        </div>
+
+                                        </div> -->
+                                        <p style="text-align: center;color: red;">
+                                            This service is not available at the moment, we are working on that
+                                        </p>
                                     </div>
                                 </div>
                                 <!--mini cart end-->
@@ -112,9 +119,9 @@
                                 <li class="menu-item-has-children active">
                                     <a href="/">Home</a>
                                 </li>
-                                <li class="menu-item-has-children">
+                                <!-- <li class="menu-item-has-children">
                                     <a href="{% url 'hot' %}">Hot</a>
-                                </li>
+                                </li> -->
                                 <li class="menu-item-has-children">
                                     <a href="#">Categories </a>
                                     <ul class="sub-menu">
@@ -148,10 +155,11 @@
                         </div>
 
                         <div class="Offcanvas_footer">
-                            <span><a href="#"><i class="fa fa-envelope-o"></i> kimonesmuske@gmail.com </a></span>
+                            <span><a href="#"><i class="fa fa-envelope-o"></i> onesmuskimanzi254@gmail.com </a></span>
                             <ul>
-                                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a style="background-color: green;" class="whatsapp" href="" title="Whatsapp"><i class="fa fa-whatsapp"></i></a></li> Join Whatsapp Group <br><br>
+                                <li class="facebook"><a href="https://www.instagram.com/kim_onesmuske/"><i class="fa fa-instagram"></i></a></li> Instagram <br><br>
+                                <li class="twitter"><a href="https://twitter.com/Kiim844"><i class="fa fa-twitter"></i></a></li> Twitter <br><br>
                             </ul>
                         </div>
                     </div>
@@ -169,7 +177,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-6">
                             <div class="support_info">
-                                <p>Email: <a href="mailto:">kimonesmuske@gmail.com</a></p>
+                                <p>Email: <a href="mailto:">onesmuskimanzi254@gmail.com</a></p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
@@ -198,20 +206,20 @@
                         <div class="col-lg-9 col-md-6">
                             <div class="middel_right">
                                 <div class="search_container">
-                                   <form action="#">
+                                   <form action="" method="GET">
                                         <div class="search_box">
-                                            <input placeholder="Search product..." type="text">
+                                            <input name="q" placeholder="Search product..." type="text" required>
                                             <button type="submit">Search</button> 
                                         </div>
                                     </form>
-                                </div>
+                                </div> 
                                 <div class="middel_right_info">
                                     <div class="mini_cart_wrapper">
                                         <a href="javascript:void(0)"><img style="width: 30px; height: 30px;" src="{% static 'images/icon/wish.png' %}" alt=""></a>
                                         <span class="cart_quantity">0</span>
                                         <div class="mini_cart">
                                             <div class="cart_item">
-                                               <div class="cart_img">
+                                               <!-- <div class="cart_img">
                                                    <a href="#"><img src="{% static 'images/s-product/product.jpg' %}" alt=""></a>
                                                </div>
                                                 <div class="cart_info">
@@ -228,10 +236,11 @@
                                                 </div>
                                                 <div class="cart_button">
                                                     <a href="checkout.html">Checkout</a>
-                                                </div>
-
+                                                </div> -->
+                                                <p style="text-align: center;color: red;">
+                                                    This service is not available at the moment, we are working on that
+                                                </p>
                                             </div>
-
                                         </div>
                                     </div>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -241,7 +250,7 @@
                                         <!--mini cart-->
                                          <div class="mini_cart">
                                             <div class="cart_item">
-                                               <div class="cart_img">
+                                               <!-- <div class="cart_img">
                                                    <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
                                                </div>
                                                 <div class="cart_info">
@@ -259,7 +268,10 @@
                                                 <div class="cart_button">
                                                     <a href="checkout.html">Checkout</a>
                                                 </div>
-                                            </div>
+                                            </div> -->
+                                            <p style="text-align: center;color: red;">
+                                                This service is not available at the moment, we are working on that
+                                            </p>
                                         </div>
                                         <!--mini cart end-->
                                     </div>
@@ -269,6 +281,7 @@
                     </div>
                 </div>
             </div>
+            <br>
             <!--header middel end-->
             <!--header bottom satrt-->
             <div class="main_menu_area">
@@ -327,16 +340,20 @@
                     <div class="row">
                         <div class="col-xl-6 col-md-6">
                             <div class="slider_content">
-                                <h1 style="color: red;font-size: 16px;"><u>Hot Products</u></h1>
-                                <h1>Next level of Drone</h1>
-                                <h2>Insane Quality for use</h2>
-                                <p>Special offer <span> 20% off </span> this week</p>
-                                <a class="button" href="product-details.html">Buy now</a>
+                                <!-- <h1 style="color: red;font-size: 16px;"><u>Hot Products</u></h1> -->
+                                <h1>Next level of Quality and</h1>
+                                <h2>Secure Shopping</h2>
+                                <p>Special offers <span> Available </span></p>
+                                <a class="button"></a>
                             </div>
                         </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
                         <div class="col-xl-6 col-md-6">
                             <div class="slider_content">
-                                <img src="{% static 'images/product/1.png' %}" alt="">
+                                <img src="{% static 'images/vituu.png' %}" alt="">
                             </div>
                         </div>
                     </div>
@@ -353,13 +370,17 @@
                 <div class="col text-center">
                     <div class="section-title">
                         <h2>For you</h2>
+                        <p>{{product_count}}</p>
                         <hr>
                     </div>
                 </div>
             </div>
+            <div class="container_data">
+                <a href="{{product}}">{{product}}</a>
+            </div>
             <div class="row justify-content-center">
                 {% for data in shop %}
-                <div style="border: 2px solid gray;margin: 10px; padding: 10px;background-color: #ffffff;box-shadow: 0px 0 30px 10px #727070;"
+                <div style="margin: 10px;"
                 class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-tranding">
                         <a href="{% url 'shopproduct' data.id %}">
@@ -415,7 +436,7 @@
                         </div>
                         <div class="shipping_content">
                             <h2>100% Money Bac</h2>
-                            <p>If the product did not satisfy the owner you 7 
+                            <p>If the product did not satisfy the owner you have 7 
                                 days to Refund money and receive back your product</p>
                         </div>
                     </div>
@@ -445,10 +466,10 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="widgets_container contact_us">
                         <div class="footer_">
-                            <a href="#"><img src="{% static 'images/logo/logo.png' %}" alt=""></a>
+                            <a href="#"><img src="{% static 'images/logo1.png' %}" alt=""></a>
                         </div>
                         <div class="footer_contact">
-                            <p>RU-Shops is developed to assist comrades and the entire Rongo University neigbours in advertising their businesses and their products</p>
+                            <p>RongoShops is developed to assist comrades and the entire Rongo University neigbours in advertising their businesses and their products</p>
                             <p>It also helps Customers access the product they need instantly through the website</p>
                         </div>
                     </div>
@@ -467,7 +488,7 @@
                 </div>
                 <div class="col-lg-2 col-md-6 col-sm-6">
                     <div class="widgets_container widget_menu">
-                        <h3>My Account</h3>
+                        <h3>Account</h3>
                         <div class="footer_menu">
                             <ul>
                                 <li><a href="{% url 'my_account' %}">My Account</a></li>
@@ -485,10 +506,9 @@
                         <h3>Follow Us</h3>
                         <div class="footer_social_link">
                             <ul>
-                                <li><a class="facebook" href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                <li><a class="twitter" href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                <li><a class="instagram" href="#" title="instagram"><i class="fa fa-instagram"></i></a></li>
-                                <li><a style="background-color: green;" class="whatsapp" href="#" title="Whatsapp"><i class="fa fa-whatsapp"></i></a></li>
+                                <li><a style="background-color: green;" class="whatsapp" href="" title="Whatsapp"><i class="fa fa-whatsapp"></i></a></li> Join Whatsapp Group <br><br>
+                                <li><a class="twitter" href="https://twitter.com/Kiim844" title="Twitter"><i class="fa fa-twitter"></i></a></li> Twitter <br><br>
+                                <li><a class="instagram" href="https://www.instagram.com/kim_onesmuske/" title="instagram"><i class="fa fa-instagram"></i></a></li> Instagram <br><br>
                             </ul>
                         </div>
                     </div>
@@ -508,40 +528,6 @@
 
 <!-- Main JS -->
 <script src="{% static 'js/main.js' %}"></script>
-<script>
-    $('.canvas_open').on('click', function(){
-    $('.Offcanvas_menu_wrapper,.off_canvars_overlay').addClass('active')
-    });
-    
-    $('.canvas_close,.').on('click', function(){
-        $('.Offcanvas_menu_wrapper,.off_canvars_overlay').removeClass('active')
-    });
-
-
-    var $offcanvasNav = $('.offcanvas_main_menu'),
-            $offcanvasNavSubMenu = $offcanvasNav.find('.sub-menu');
-        $offcanvasNavSubMenu.parent().prepend('<span class="menu-expand"><i class="fa fa-angle-down"></i></span>');
-        
-        $offcanvasNavSubMenu.slideUp();
-        
-        $offcanvasNav.on('click', 'li a, li .menu-expand', function(e) {
-            var $this = $(this);
-            if ( ($this.parent().attr('class').match(/\b(menu-item-has-children|has-children|has-sub-menu)\b/)) && ($this.attr('href') === '#' || $this.hasClass('menu-expand')) ) {
-                e.preventDefault();
-                if ($this.siblings('ul:visible').length){
-                    $this.siblings('ul').slideUp('slow');
-                }else {
-                    $this.closest('li').siblings('li').find('ul:visible').slideUp('slow');
-                    $this.siblings('ul').slideDown('slow');
-                }
-            }
-            if( $this.is('a') || $this.is('span') || $this.attr('clas').match(/\b(menu-expand)\b/) ){
-                $this.parent().toggleClass('menu-open');
-            }else if( $this.is('li') && $this.attr('class').match(/\b('menu-item-has-children')\b/) ){
-                $this.toggleClass('menu-open');
-            }
-        });
-</script>
 </body>
 
 <!--   03:22:07 GMT -->

@@ -329,48 +329,125 @@
             <!--header bottom end-->
         </div> 
     </header>
-    <style>
-        .profile-pic{
-            max-width: 200px;
-            max-height:200px;
-            margin: 0 auto;
-            border-radius: 50%;
-        }
-    </style>
-    
-    <br>
-    <h1 style="text-align: center;">My Account</h1>
-    <hr>
-    <p style="text-align: center;">Hello {{user.username}} update your account to proceed <br>
-    <span style="color: red;">NOTE: </span> This phone number and email will be used by the customers to contact you
-    </p>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card card-body">
-                <p>If your profile is complete</p>
-                <a style="background-color: blue;" class="btn btn-warning" href="/"> &#8592; Go To Home</a>
-                <!-- <hr> -->
-                <h3 style="text-align: center">Profile Photo</h3>
-                <hr>
-                <img style="width: 200px;height: 200px; border-radius: 50%; margin: 0% auto;" 
-                class="profile" src="{{request.user.client.profile_pic.url}}" >
-            
+    <!--header area end-->
+
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">   
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="/">home</a></li>
+                            <li>Jewellery</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-md-9">
-            <div class="card card-body">
-                
-                <form method="POST" action="" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{form.as_p}}
-        
-                <input class="btn btn-primary" type="submit" name="Update Information">
-                </form>
-            </div>
-        </div>
+        </div>         
     </div>
+
+    <section class="pt-60 pb-30 gray-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                {% for data in shop %}
+                {% if data.category == 'jewellery' %}
+                <div style="margin: 10px;"
+                class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="single-tranding">
+                        <a href="{% url 'shopproduct' data.id %}">
+                            <div class="tranding-pro-img">
+                                <img src="{{data.image.url}}" alt="">
+                            </div>
+                            <div class="tranding-pro-title">
+                                <h3>{{data.name}}</h3>
+                                <h4>{{data.category}}</h4>
+                            </div>
+                            <div class="tranding-pro-price">
+                                <div class="price_box">
+                                    <span class="current_price">Location: {{data.location}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <br>
+
+    <footer class="footer_widgets">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="widgets_container contact_us">
+                        <div class="footer_">
+                            <a href="#"><img src="{% static 'images/logo1.png' %}" alt=""></a>
+                        </div>
+                        <div class="footer_contact">
+                            <p>RongoShops is developed to assist comrades and the entire Rongo University neigbours in advertising their businesses and their products</p>
+                            <p>It also helps Customers access the product they need instantly through the website</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="widgets_container widget_menu">
+                        <h3>Information</h3>
+                        <div class="footer_menu">
+                            <ul>
+                                <li><a href="{% url 'about_us' %}">About Us</a></li>
+                                <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
+                                <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="widgets_container widget_menu">
+                        <h3>Account</h3>
+                        <div class="footer_menu">
+                            <ul>
+                                <li><a href="{% url 'my_account' %}">My Account</a></li>
+                                <li><a href="{% url 'makeshop' %}">Makeshop</a></li>
+                                <li><a href="{% url 'my_shop' %}">My Shop</a></li>
+                                <li><a href="{% url 'register' %}">Register</a></li>
+                                <li><a href="{% url 'login' %}">LogIn</a></li>
+                                <li><a href="{% url 'logout' %}">LogOut</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="widgets_container newsletter">
+                        <h3>Follow Us</h3>
+                        <div class="footer_social_link">
+                            <ul>
+                                <li><a style="background-color: green;" class="whatsapp" href="" title="Whatsapp"><i class="fa fa-whatsapp"></i></a></li> Join Whatsapp Group <br><br>
+                                <li><a class="twitter" href="https://twitter.com/Kiim844" title="Twitter"><i class="fa fa-twitter"></i></a></li> Twitter <br><br>
+                                <li><a class="instagram" href="https://www.instagram.com/kim_onesmuske/" title="instagram"><i class="fa fa-instagram"></i></a></li> Instagram <br><br>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </footer>
+    <!--footer area end-->
+<!-- JS
+============================================ -->
+
+
+
+<!-- Plugins JS -->
+<script src="{% static 'js/plugins.js' %}"></script>
+
+<!-- Main JS -->
+<script src="{% static 'js/main.js' %}"></script>
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!--   03:22:07 GMT -->
 </html>

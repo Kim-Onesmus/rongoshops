@@ -1,18 +1,351 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="en">
 
+<!--   03:20:39 GMT -->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>RongoShops</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logoo.png' %}">
+    
+    <!-- CSS 
+    ========================= -->
+   
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
     <link rel="stylesheet" href="{% static 'css/admin1.css' %}">
-    <title>Rongo Shops</title>
+
+    
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
 </head>
 
 <body>
-    <p style="text-align: center;color: black;font-size: 20px;font-weight: bold;">My Shops</p>
-    <hr>
+
+    <!--header area start-->
+    <!--Offcanvas menu area start-->
+    <div class="off_canvars_overlay">
+            
+    </div>
+    <div class="Offcanvas_menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="canvas_open">
+                        <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
+                    </div>
+                    <div class="Offcanvas_menu_wrapper">
+                        <div class="canvas_close">
+                              <a href="javascript:void(0)"><i class="ion-android-close"></i></a>  
+                        </div>
+                        <div style="margin: 0% auto;" class="img">
+                            <img style="width: 40px;height: 40px;border-radius: 50%; margin: 0% auto;"
+                            src="{{request.user.client.profile_pic.url}}" alt="">
+                            <p>Hello {{user.username}}</p>
+                        </div>
+                        <div class="support_info">
+                            <p>Any Enquiry: <a href="tel:+254792613079">+254792613079</a></p>
+                        </div>
+                        <div class="top_right text-right">
+                            <ul>
+                               <li><a href="{% url 'my_account' %}"> My Account </a></li> 
+                               <li><a href="{% url 'logout' %}"> LogOut </a></li> 
+                            </ul>
+                        </div> 
+                        <!-- <div class="search_container">
+                           <form action="#">
+                                <div class="search_box">
+                                    <input placeholder="Search product..." type="text">
+                                    <button type="submit">Search</button> 
+                                </div>
+                            </form>
+                        </div>  -->
+                        
+                        <div class="middel_right_info">
+                            <div class="mini_cart_wrapper">
+                                <a href="javascript:void(0)"><img style="width: 30px; height: 30px;" src="{% static 'images/icon/wish.png' %}" alt=""></a>
+                                <span class="cart_quantity">0</span>
+                                <div class="mini_cart">
+                                    <div class="cart_item">
+                                       <!-- <div class="cart_img">
+                                           <a href="#"><img src="{% static 'images/s-product/product.jpg' %}" alt=""></a>
+                                       </div>
+                                        <div class="cart_info">
+                                            <a href="#">Sit voluptatem rhoncus sem lectus</a>
+                                            <p>Qty: 1 X <span> Ksh.60.00 </span></p>    
+                                        </div>
+                                        <div class="cart_remove">
+                                            <a href="#"><i class="ion-android-close"></i></a>
+                                        </div> -->
+                                        <p style="text-align: center;color: red;">
+                                            This service is not available at the moment, we are working on that
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="mini_cart_wrapper">
+                                <a href="javascript:void(0)"><img src="{% static 'images/shopping-bag.png' %}" alt=""></a>
+                                <span class="cart_quantity">0</span>
+                                <!--mini cart-->
+                                 <div class="mini_cart">
+                                    <div class="cart_item">
+                                       <!-- <div class="cart_img">
+                                           <a href="#"><img src="{% static 'images/s-product/product.jpg' %}" alt=""></a>
+                                       </div>
+                                        <div class="cart_info">
+                                            <a href="#">Sit voluptatem rhoncus sem lectus</a>
+                                            <p>Qty: 1 X <span> Ksh.60.00 </span></p>    
+                                        </div>
+                                        <div class="cart_remove">
+                                            <a href="#"><i class="ion-android-close"></i></a>
+
+                                        </div> -->
+                                        <p style="text-align: center;color: red;">
+                                            This service is not available at the moment, we are working on that
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--mini cart end-->
+                            </div>
+                        </div>
+                        <div id="menu" class="text-left ">
+                            <ul class="offcanvas_main_menu">
+                                <li class="menu-item-has-children active">
+                                    <a href="/">Home</a>
+                                </li>
+                                <!-- <li class="menu-item-has-children">
+                                    <a href="{% url 'hot' %}">Hot</a>
+                                </li> -->
+                                <li class="menu-item-has-children">
+                                    <a href="#">Categories </a>
+                                    <ul class="sub-menu">
+                                        <li><a href="{% url 'fashion' %}">Fashion</a></li>
+                                        <li><a href="{% url 'electronics' %}">Electronis</a></li>
+                                        <li><a href="{% url 'jewellery' %}">Jewellery</a></li>
+                                        <li><a href="{% url 'delicasies' %}">Delicasies</a></li>
+                                        <li><a href="{% url 'automotive' %}">Automotive</a></li>
+                                        <li><a href="{% url 'grocery' %}">Grocery</a></li>
+                                        <li><a href="{% url 'cyber' %}">Cyber</a></li>
+                                        <li><a href="{% url 'retail' %}">Retail</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">Account</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="{% url 'my_account' %}">My Account</a></li>
+                                        <li><a href="{% url 'makeshop' %}">Makeshop</a></li>
+                                        <li><a href="{% url 'my_shop' %}">My Shop</a></li>
+                                        <li><a href="{% url 'register' %}">Register</a></li>
+                                        <li><a href="{% url 'login' %}">LogIn</a></li>
+                                        <a href="{% url 'logout' %}">LogOut</a> 
+                                    </ul>
+                                </li>
+                                <li><a href="{% url 'contact_us' %}"> Contact Us</a></li>
+                                <li><a href="{% url 'about_us' %}"> About Us</a></li>
+                                <li><a href="{% url 'privacy_policy' %}"> Privacy policy</a></li>
+                                <li class="menu-item-has-children">
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="Offcanvas_footer">
+                            <span><a href="#"><i class="fa fa-envelope-o"></i> onesmuskimanzi254@gmail.com </a></span>
+                            <ul>
+                                <li><a style="background-color: green;" class="whatsapp" href="" title="Whatsapp"><i class="fa fa-whatsapp"></i></a></li> Join Whatsapp Group <br><br>
+                                <li class="facebook"><a href="https://www.instagram.com/kim_onesmuske/"><i class="fa fa-instagram"></i></a></li> Instagram <br><br>
+                                <li class="twitter"><a href="https://twitter.com/Kiim844"><i class="fa fa-twitter"></i></a></li> Twitter <br><br>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Offcanvas menu area end-->
+    
+    <header>
+        <div class="main_header">
+            <!--header top start-->
+            <div class="header_top">
+                <div class="container">  
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="support_info">
+                                <p>Email: <a href="mailto:">onesmuskimanzi254@gmail.com</a></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="top_right text-right">
+                                <ul>
+                                    <li><a href="{% url 'makeshop' %}">Makeshop</a></li> 
+                                   <li><a href="{% url 'login' %}">LogIn</a></li> 
+                                   <li><a href="{% url 'logout' %}">LogOut</a></li> 
+                                   <img style="width: 40px;height: 40px;border-radius: 50%;" src="{{request.user.client.profile_pic.url}}" alt="">
+                                </ul>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--header top start-->
+            <!--header middel start-->
+            <div class="header_middle">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="logo">
+                                <a href="/"><img src="{% static 'images/logo1.png' %}" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-6">
+                            <div class="middel_right">
+                                <!-- <div class="search_container">
+                                   <form action="#">
+                                        <div class="search_box">
+                                            <input placeholder="Search product..." type="text">
+                                            <button type="submit">Search</button> 
+                                        </div>
+                                    </form>
+                                </div>  -->
+                                <div class="middel_right_info">
+                                    <div class="mini_cart_wrapper">
+                                        <a href="javascript:void(0)"><img style="width: 30px; height: 30px;" src="{% static 'images/icon/wish.png' %}" alt=""></a>
+                                        <span class="cart_quantity">0</span>
+                                        <div class="mini_cart">
+                                            <div class="cart_item">
+                                               <!-- <div class="cart_img">
+                                                   <a href="#"><img src="{% static 'images/s-product/product.jpg' %}" alt=""></a>
+                                               </div>
+                                                <div class="cart_info">
+                                                    <a href="#">Sit voluptatem rhoncus sem lectus</a>
+                                                    <p>Qty: 1 X <span> $60.00 </span></p>    
+                                                </div>
+                                                <div class="cart_remove">
+                                                    <a href="#"><i class="ion-android-close"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="mini_cart_footer">
+                                               <div class="cart_button">
+                                                    <a href="cart.html">View Wishlist</a>
+                                                </div>
+                                                <div class="cart_button">
+                                                    <a href="checkout.html">Checkout</a>
+                                                </div> -->
+                                                <p style="text-align: center;color: red;">
+                                                    This service is not available at the moment, we are working on that
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div class="mini_cart_wrapper">
+                                        <a href="javascript:void(0)"><img src="{% static 'images/shopping-bag.png' %}" alt=""></a>
+                                        <span class="cart_quantity">0</span>
+                                        <!--mini cart-->
+                                         <div class="mini_cart">
+                                            <div class="cart_item">
+                                               <!-- <div class="cart_img">
+                                                   <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
+                                               </div>
+                                                <div class="cart_info">
+                                                    <a href="#">Sit voluptatem rhoncus sem lectus</a>
+                                                    <p>Qty: 1 X <span> $60.00 </span></p>    
+                                                </div>
+                                                <div class="cart_remove">
+                                                    <a href="#"><i class="ion-android-close"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="mini_cart_footer">
+                                               <div class="cart_button">
+                                                    <a href="cart.html">View cart</a>
+                                                </div>
+                                                <div class="cart_button">
+                                                    <a href="checkout.html">Checkout</a>
+                                                </div>
+                                            </div> -->
+                                            <p style="text-align: center;color: red;">
+                                                This service is not available at the moment, we are working on that
+                                            </p>
+                                        </div>
+                                        <!--mini cart end-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!--header middel end-->
+            <!--header bottom satrt-->
+            <div class="main_menu_area">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="main_menu menu_position"> 
+                                <nav>  
+                                    <ul>
+                                        <li><a href="/">home</a></li>
+                                        <!-- <li><a href="{% url 'hot' %}">Hot</a></li> -->
+                                        
+                                        <li><a class="active" href="#">Categories <i class="fa fa-angle-down"></i></a>
+                                            <ul class="sub_menu pages">
+                                                <li><a href="{% url 'fashion' %}">Fashion</a></li>
+                                                <li><a href="{% url 'electronics' %}">Electronis</a></li>
+                                                <li><a href="{% url 'jewellery' %}">Jewellery</a></li>
+                                                <li><a href="{% url 'delicasies' %}">Delicasies</a></li>
+                                                <li><a href="{% url 'automotive' %}">Automotive</a></li>
+                                                <li><a href="{% url 'grocery' %}">Grocery</a></li>
+                                                <li><a href="{% url 'cyber' %}">Cyber</a></li>
+                                                <li><a href="{% url 'retail' %}">Retail</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Account<i class="fa fa-angle-down"></i></a>
+                                            <ul class="sub_menu pages">
+                                                <li><a href="{% url 'my_account' %}">My Account</a></li>
+                                                <li><a href="{% url 'makeshop' %}">Makeshop</a></li>
+                                                <li><a href="{% url 'my_shop' %}">My Shop</a></li>
+                                                <li><a href="{% url 'register' %}">Register</a></li>
+                                                <li><a href="{% url 'login' %}">LogIn</a></li>
+                                                <li><a href="{% url 'logout' %}">LogOut</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="{% url 'contact_us' %}"> Contact Us</a></li>
+                                        <li><a href="{% url 'about_us' %}"> About Us</a></li>
+                                        <li><a href="{% url 'privacy_policy' %}"> Privacy policy</a></li>
+                                    </ul>  
+                                </nav> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--header bottom end-->
+        </div> 
+    </header>
+    <div class="breadcrumbs_area">
+        <div class="container">   
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="/">home</a></li>
+                            <li>My shops</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>         
+    </div>
+    <br>
     <div class="members">
         <div style="width: 95%; margin: 0% auto;" class="welcome">
             <div class="loopp1">                
@@ -51,7 +384,7 @@
                                     <td><img style="width: 100px;height: 100px;" src="{{data.image.url}}" alt=""></td>
                                     <td><a href="{% url 'add_product' data.id %}">Add Products</a></td>
                                     <td><a href="{% url 'shopproduct' data.id %}">View Products</a></td>
-                                    <td><a class="button" href="{% url 'update-shop' data.id %}">Update</a></td>
+                                    <td><a class="button2" href="{% url 'update-shop' data.id %}">Update</a></td>
                                     <td><a class="button1" href="{% url 'delete-shop' data.id %}">Delete</a></td>
                                 </tr>
                                 {% endif %}
@@ -67,8 +400,20 @@
     <br>
     <br>
     <br>
-    <p style="text-align: center;color: black;font-size: 20px;font-weight: bold;">My Products</p>
-    <hr>
+    <div class="breadcrumbs_area">
+        <div class="container">   
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="">My shop</a></li>
+                            <li>Shop product</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>         
+    </div>
     <br><br>
     <div class="members">
         <div style="width: 95%; margin: 0% auto;" class="welcome">
@@ -114,13 +459,18 @@
                                     <td>{{data.instock}}</td>
                                     <td>Ksh. {{data.new_price}}</td>
                                     <td>Ksh. {{data.old_price}}</td>
-                                    <td><a class="button" href="{% url 'update-product' data.id %}">Update</a></td>
+                                    <td><a class="button2" href="{% url 'update-product' data.id %}">Update</a></td>
                                     <td><a class="button1" href="{% url 'delete-product' data.id %}">Delete</a></td>
                                 </tr>
                                 {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
