@@ -825,7 +825,7 @@
         $('.Offcanvas_menu_wrapper,.off_canvars_overlay').addClass('active')
     });
     
-    $('.canvas_close,.').on('click', function(){
+    $('.canvas_close,.off_canvars_overlay').on('click', function(){
         $('.Offcanvas_menu_wrapper,.off_canvars_overlay').removeClass('active')
     });
     

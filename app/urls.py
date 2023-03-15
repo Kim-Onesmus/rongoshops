@@ -8,7 +8,10 @@ urlpatterns = [
     # Hot
     path('hot', views.Hot, name='hot'),
     
-	# path('cart/', views.cart, name="cart"),
+    path('cart/', views.cart, name="cart"),
+    path('update_item/', views.updateItem, name="update_item"),
+
+    
     
     # Categories
     path('fashion', views.Fashion, name='fashion'),

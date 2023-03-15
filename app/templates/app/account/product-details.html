@@ -1,5 +1,5 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="en">
 
 <!--   03:20:39 GMT -->
@@ -15,7 +15,26 @@
 
     <!-- CSS 
     ========================= -->
+    <script type="text/javascript">
+		var user = '{{request.user}}'
 
+        function getToken(name) {
+		    var cookieValue = null;
+		    if (document.cookie && document.cookie !== '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i < cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getToken('csrftoken')
+    </script>
 
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
@@ -358,7 +377,7 @@
     </div>
     <!--breadcrumbs area end-->
 
-    {% for data in product %}
+    {% for product in products %}
     <!--product details start-->
     <div class="product_details mt-60 mb-60">
         <div class="container">
@@ -367,7 +386,7 @@
                     <div class="product-details-tab">
                         <div id="img-1" class="zoomWrapper single-zoom">
                             <a href="#">
-                                <img style="width: 650px; height: 350px;" src="{{data.image.url}}">
+                                <img style="width: 650px; height: 350px;" src="{{product.image.url}}">
                             </a>
                         </div>
                     </div>
@@ -375,44 +394,44 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product_d_right">
                         <form action="#">
-                            <h1>{{data.product_name}}</h1>
+                            <h1>{{product.product_name}}</h1>
 
                             <div class="price_box">
-                                <span class="current_price">Ksh. {{data.new_price}}</span>
-                                <span class="old_price">Ksh. {{data.old_price}}</span>
+                                <span class="current_price">Ksh. {{product.new_price}}</span>
+                                <span class="old_price">Ksh. {{product.old_price}}</span>
 
                             </div>
                             <div class="product_desc">
                                 <ul>
-                                    <li>{{data.instock}} In Stock</li>
-                                    <li>{{data.delivery}}</li>
+                                    <li>{{product.instock}} In Stock</li>
+                                    <li>{{product.delivery}}</li>
                                 </ul>
                             </div>
                             <div class="product_variant quantity">
                                 <button class="button" type="submit">
-                                    <a href="https://wa.me/{{data.product_owner.client.number}}?
-                                    text=Hello {{data.product_owner}}, how can i get your product {{data.product_name}}??">Order</a></button><br><br>
+                                    <a href="https://wa.me/{{product.product_owner.client.number}}?
+                                    text=Hello {{product.product_owner}}, how can i get your product {{product.product_name}}??">Order</a></button><br><br>
                                 <button class="button" type="button"><a>
                                         <a
-                                            href="https://wa.me/{{data.product_owner.client.number}}?
-                                    text=Hello {{data.product_owner}}, how about {{data.product_name}} of price KSH.{{data.new_price}} under {{data.product_shop}} in RongoShops website">
+                                            href="https://wa.me/{{product.product_owner.client.number}}?
+                                    text=Hello {{product.product_owner}}, how about {{product.product_name}} of price KSH.{{product.new_price}} under {{product.product_shop}} in RongoShops website">
                                             <i style="color: green; font-size: 25px;" class="fa fa-whatsapp"></i></a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         Chart Seller
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="mailto: {{data.product_owner.email}}? 
-                                        &subject={{data.product_shop}} {{data.product_name}}! &how about {{data.product_name}} of price KSH.{{data.new_price}} under {{data.product_shop}} in RongoShops website">
+                                        <a href="mailto: {{product.product_owner.client.email}}? 
+                                        &subject={{product.product_shop}} {{product.product_name}}! &body=How about {{product.product_name}} of price KSH.{{product.new_price}} under {{product.product_shop}} in RongoShops website">
                                             <i style="color: pink; font-size: 25px;" class="fa fa-envelope-o"></i></a>
                                     </a></button><br>
                             </div>
                             <div class=" product_d_action">
                                 <ul>
-                                    <li><a href="#" title="Add to wishlist">+ Add to cat</a></li>
-                                    <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
+                                    <li><button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">+ Add to cat</button></li><br>
+                                    <li><button>+ Add to Wishlist</button></li>
                                 </ul>
                             </div>
                             <div class="product_meta">
-                                <span>Category: <a href="#">{{data.product_shop.category}}</a></span>
+                                <span>Category: <a href="#">{{product.product_shop.category}}</a></span>
                             </div>
                         </form>
                     </div>
@@ -439,7 +458,7 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="info" role="tabpanel">
                                 <div class="product_info_content">
-                                    <p>{{data.description}}</p>
+                                    <p>{{product.description}}</p>
                                 </div>
                             </div>
                         </div>
@@ -563,7 +582,7 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
-
+    <script type="text/javascript" src="{% static 'js/cart.js' %}" ></script>
 
 
 </body>
