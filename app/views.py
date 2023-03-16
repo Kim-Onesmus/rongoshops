@@ -5,8 +5,10 @@ from .models import Client, Shop, Product, Contact, Order, OrderItem
 from .forms import ClientForm, ShopForm, ProductForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.db.models import Q
 from django.http import JsonResponse
+from django.conf import settings
 import json
 
 
@@ -18,8 +20,6 @@ import json
 def Home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     product = Product.objects.filter(
-        # Q(product_owner__icontains=q) |
-        # Q(product_shop__icontains=q) |
         Q(product_name__icontains=q) |
         Q(delivery__icontains=q) |
         Q(new_price__icontains=q) |
@@ -41,6 +41,33 @@ def Home(request):
     shop = Shop.objects.all
     context = {'shop':shop, 'product_count':product_count, 'product':product, 'cartItems':cartItems, 'items':items,}
     return render(request, 'app/index.html', context)
+
+
+
+def Search(request):
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    product = Product.objects.filter(
+        Q(product_name__icontains=q) |
+        Q(delivery__icontains=q) |
+        Q(new_price__icontains=q) |
+        Q(old_price__icontains=q) |
+        Q(description__icontains=q)
+    )
+    
+    if request.user.is_authenticated:
+        client = request.user.client
+        order, created = Order.objects.get_or_create(client=client, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total':0, 'get_cart_items':0}
+        cartItems = order['get_cart_items']
+    
+    product_count = product.count()
+    shop = Shop.objects.all
+    context = {'shop':shop, 'product_count':product_count, 'product':product, 'cartItems':cartItems, 'items':items,}
+    return render(request, 'app/search.html', context)
 
 # Hot
 def Hot(request):
@@ -365,6 +392,12 @@ def Register(request):
                 client_details = Client.objects.create(user=user, username=user.username, email=email)
                 client_details.save()
 
+                subject = 'Welcome to RongoShops'
+                message = f'Hello {user.username}, thank you for registering in ShopsRongo.Login to experience next level of quality and secure shopping'
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = [user.email, ]
+                send_mail( subject, message, email_from, recipient_list )
+                
                 messages.info(request, 'Account created')
                 return redirect('login')
         else:
@@ -400,7 +433,8 @@ def logOut(request):
 
 # Other
 
-def contactUs(request):        
+def contactUs(request):
+    user = request.user    
     if request.method == 'POST':
         name = request.POST['name']
         email = request.POST['email']
@@ -408,6 +442,18 @@ def contactUs(request):
         
         information = Contact.objects.create(name=name, email=email, message=message)
         information.save()
+        
+        data = {
+            'name':name,
+            'email':email,
+            'message':message
+        }
+         
+        subject = data['name']
+        message = data['message']
+        email_from = user.email
+        recipient_list = [settings.EMAIL_HOST_USER,]
+        send_mail( subject, message, email_from, recipient_list )
         
         messages.info(request, 'Message send successfully')
         return redirect('contact_us')

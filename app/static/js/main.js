@@ -877,5 +877,7 @@
     //     document.onmousedown=disableselect  
     //     document.onclick=reEnable  
     //     }
+
+    self.addEventListener('fetch', function(event) {});
     
 })(jQuery);	

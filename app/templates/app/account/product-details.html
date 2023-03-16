@@ -63,11 +63,13 @@
                         <div class="canvas_close">
                               <a href="javascript:void(0)"><i class="ion-android-close"></i></a>  
                         </div>
+                        {% if user.is_authenticated %}
                         <div style="margin: 0% auto;" class="img">
                             <img style="width: 40px;height: 40px;border-radius: 50%; margin: 0% auto;"
                             src="{{request.user.client.profile_pic.url}}" alt="">
                             <p>Hello {{user.username}}</p>
                         </div>
+                        {% endif %}
                         <div class="support_info">
                             <p>Any Enquiry: <a href="tel:+254792613079">+254792613079</a></p>
                         </div>
@@ -169,9 +171,12 @@
                                         <li><a href="{% url 'my_account' %}">My Account</a></li>
                                         <li><a href="{% url 'makeshop' %}">Makeshop</a></li>
                                         <li><a href="{% url 'my_shop' %}">My Shop</a></li>
+                                        {% if user.is_authenticated %}
+                                        <a href="{% url 'logout' %}">LogOut</a> 
+                                        {% else %}
                                         <li><a href="{% url 'register' %}">Register</a></li>
                                         <li><a href="{% url 'login' %}">LogIn</a></li>
-                                        <a href="{% url 'logout' %}">LogOut</a> 
+                                        {% endif %}
                                     </ul>
                                 </li>
                                 <li><a href="{% url 'contact_us' %}"> Contact Us</a></li>
@@ -212,9 +217,12 @@
                             <div class="top_right text-right">
                                 <ul>
                                     <li><a href="{% url 'makeshop' %}">Makeshop</a></li> 
-                                   <li><a href="{% url 'login' %}">LogIn</a></li> 
+                                   {% if user.is_authenticated %}
                                    <li><a href="{% url 'logout' %}">LogOut</a></li> 
                                    <img style="width: 40px;height: 40px;border-radius: 50%;" src="{{request.user.client.profile_pic.url}}" alt="">
+                                   {% else %}
+                                   <li><a href="{% url 'login' %}">LogIn</a></li> 
+                                   {% endif %}
                                 </ul>
                             </div>   
                         </div>
@@ -332,9 +340,12 @@
                                                 <li><a href="{% url 'my_account' %}">My Account</a></li>
                                                 <li><a href="{% url 'makeshop' %}">Makeshop</a></li>
                                                 <li><a href="{% url 'my_shop' %}">My Shop</a></li>
+                                                {% if user.is_authenticated %}
+                                                <li><a href="{% url 'logout' %}">LogOut</a></li>
+                                                {% else %}
                                                 <li><a href="{% url 'register' %}">Register</a></li>
                                                 <li><a href="{% url 'login' %}">LogIn</a></li>
-                                                <li><a href="{% url 'logout' %}">LogOut</a></li>
+                                                {% endif %}
                                             </ul>
                                         </li>
                                         <li><a href="{% url 'contact_us' %}"> Contact Us</a></li>
@@ -378,7 +389,7 @@
                     <div class="product-details-tab">
                         <div id="img-1" class="zoomWrapper single-zoom">
                             <a href="#">
-                                <img style="width: 650px; height: 350px;" src="{{product.image.url}}">
+                                <img style="width: 500px; height: 350px;" src="{{product.image.url}}">
                             </a>
                         </div>
                     </div>

@@ -43,11 +43,13 @@
                         <div class="canvas_close">
                               <a href="javascript:void(0)"><i class="ion-android-close"></i></a>  
                         </div>
+                        {% if user.is_authenticated %}
                         <div style="margin: 0% auto;" class="img">
                             <img style="width: 40px;height: 40px;border-radius: 50%; margin: 0% auto;"
                             src="{{request.user.client.profile_pic.url}}" alt="">
                             <p>Hello {{user.username}}</p>
                         </div>
+                        {% endif %}
                         <div class="support_info">
                             <p>Any Enquiry: <a href="tel:+254792613079">+254792613079</a></p>
                         </div>
@@ -149,9 +151,12 @@
                                         <li><a href="{% url 'my_account' %}">My Account</a></li>
                                         <li><a href="{% url 'makeshop' %}">Makeshop</a></li>
                                         <li><a href="{% url 'my_shop' %}">My Shop</a></li>
+                                        {% if user.is_authenticated %}
+                                        <a href="{% url 'logout' %}">LogOut</a> 
+                                        {% else %}
                                         <li><a href="{% url 'register' %}">Register</a></li>
                                         <li><a href="{% url 'login' %}">LogIn</a></li>
-                                        <a href="{% url 'logout' %}">LogOut</a> 
+                                        {% endif %}
                                     </ul>
                                 </li>
                                 <li><a href="{% url 'contact_us' %}"> Contact Us</a></li>
@@ -192,9 +197,12 @@
                             <div class="top_right text-right">
                                 <ul>
                                     <li><a href="{% url 'makeshop' %}">Makeshop</a></li> 
-                                   <li><a href="{% url 'login' %}">LogIn</a></li> 
-                                   <li><a href="{% url 'logout' %}">LogOut</a></li> 
-                                   <img style="width: 40px;height: 40px;border-radius: 50%;" src="{{request.user.client.profile_pic.url}}" alt="">
+                                    {% if user.is_authenticated %}
+                                    <li><a href="{% url 'logout' %}">LogOut</a></li> 
+                                    <img style="width: 40px;height: 40px;border-radius: 50%;" src="{{request.user.client.profile_pic.url}}" alt="">
+                                    {% else %}
+                                    <li><a href="{% url 'login' %}">LogIn</a></li> 
+                                    {% endif %}
                                 </ul>
                             </div>   
                         </div>
@@ -312,9 +320,12 @@
                                                 <li><a href="{% url 'my_account' %}">My Account</a></li>
                                                 <li><a href="{% url 'makeshop' %}">Makeshop</a></li>
                                                 <li><a href="{% url 'my_shop' %}">My Shop</a></li>
+                                                {% if user.is_authenticated %}
+                                                <li><a href="{% url 'logout' %}">LogOut</a></li>
+                                                {% else %}
                                                 <li><a href="{% url 'register' %}">Register</a></li>
                                                 <li><a href="{% url 'login' %}">LogIn</a></li>
-                                                <li><a href="{% url 'logout' %}">LogOut</a></li>
+                                                {% endif %}
                                             </ul>
                                         </li>
                                         <li><a href="{% url 'contact_us' %}"> Contact Us</a></li>
@@ -355,9 +366,9 @@
             <div class="row align-items-center">
                 <div class="col-12">
                    <figure>
-                        <div class="about_thumb">
-                            <img src="{% static 'images/about/about1.jpg' %}" alt="">
-                        </div>
+                        <!-- <div style="margin: 0% auto;" class="about_thumb">
+                            <img style="margin: 0% auto;" src="{% static 'images/about.jpg' %}" alt="">
+                        </div> -->
                         <figcaption class="about_content">
                             <h1>RongoShops</h1>
                             <p>This is a website created to help  Shop owners, Comrades and business people
@@ -383,7 +394,7 @@
                     <article class="single_gallery_section">
                         <figure>
                             <div class="gallery_thumb">
-                                <img src="{% static 'images/about/about2.jpg' %}" alt="">
+                                <img src="{% static 'images/what.png' %}" alt="">
                             </div>
                             <figcaption class="about_gallery_content">
                                <h3>What do we do?</h3>
@@ -400,7 +411,7 @@
                     <article class="single_gallery_section">
                         <figure>
                             <div class="gallery_thumb">
-                                <img src="{% static 'images/about/about3.jpg' %}" alt="">
+                                <img src="{% static 'images/history.avif' %}" alt="">
                             </div>
                             <figcaption class="about_gallery_content">
                                <h3>History Of Us</h3>
@@ -489,12 +500,12 @@
                     <article class="team_member">
                         <figure>
                             <div class="team_thumb">
-                                <img style="width: 150px;height: 150px;border-radius: 50%;" src="assets/img/about/team-2.jpg" alt="">
+                                <img style="width: 150px;height: 150px;border-radius: 50%;" src="{% static 'images/riziki.jpg' %}" alt="">
                             </div>
                             <figcaption class="team_content">
                                 <h3>Riziki Danniel</h3>
-                                <h5>Marketing Manager</h5>
-                                <p>Phone: +254 <br> Email: </p>
+                                <h5>Marketing Lead</h5>
+                                <p>Phone: +254 769 603 334 <br> Email: winfriz21@gmail.com</p>
                             </figcaption>
                         </figure>   
                     </article>
@@ -503,12 +514,12 @@
                     <article class="team_member">
                         <figure>
                             <div class="team_thumb">
-                                <img style="width: 150px;height: 150px;border-radius: 50%;" src="assets/img/about/team-3.jpg" alt="">
+                                <img style="width: 150px;height: 150px;border-radius: 50%;" src="{% static 'images/steve.jpg' %}" alt="">
                             </div>
                             <figcaption class="team_content">
                                 <h3>Stephene Ojiambo</h3>
                                 <h5>Cyber security Manager</h5>
-                                <p>Phone: +254 <br> Email: </p>
+                                <p>Phone: +254 768 031 418 <br> Email: ojsteve01@gmail.com</p>
                             </figcaption>
                         </figure>   
                     </article>
@@ -516,13 +527,13 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <article class="team_member">
                         <figure>
-                            <div style="width: 150px;height: 150px;border-radius: 50%;" class="team_thumb">
-                                <img src="assets/img/about/team-4.jpg" alt="">
+                            <div class="team_thumb">
+                                <img  style="width: 150px;height: 150px;border-radius: 50%;" src="{% static 'images/vero.jpg' %}" alt="">
                             </div>
                             <figcaption class="team_content">
                                 <h3>Veronicah Stellah</h3>
                                 <h5>Graphic Designer</h5>
-                                <p>Phone: +254 <br> Email: </p>
+                                <p>Phone: +254 790 845 923 <br> Email: verostella234@gmail.com</p>
                             </figcaption>
                         </figure>   
                     </article>

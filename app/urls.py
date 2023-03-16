@@ -5,6 +5,9 @@ from . import  views
 urlpatterns = [
     path('', views.Home, name='home'),
     
+    path('search', views.Search, name='search'),
+    
+    
     # Hot
     path('hot', views.Hot, name='hot'),
     

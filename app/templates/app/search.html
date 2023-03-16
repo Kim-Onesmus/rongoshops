@@ -59,14 +59,14 @@
                                <li><a href="{% url 'logout' %}"> LogOut </a></li> 
                             </ul>
                         </div> 
-                        <!-- <div class="search_container">
+                        <div class="search_container">
                            <form action="" method="GET">
                                 <div class="search_box">
                                     <input type="text" name="q" placeholder="Search......" required>
                                     <button type="submit">Search</button> 
                                 </div>
                             </form>
-                        </div>  -->
+                        </div> 
                         
                         <div class="middel_right_info">
                             <!-- <div class="mini_cart_wrapper">
@@ -197,12 +197,12 @@
                             <div class="top_right text-right">
                                 <ul>
                                     <li><a href="{% url 'makeshop' %}">Makeshop</a></li> 
-                                    {% if user.is_authenticated %}
-                                    <li><a href="{% url 'logout' %}">LogOut</a></li> 
-                                    <img style="width: 40px;height: 40px;border-radius: 50%;" src="{{request.user.client.profile_pic.url}}" alt="">
-                                    {% else %}
-                                    <li><a href="{% url 'login' %}">LogIn</a></li> 
-                                    {% endif %}
+                                   {% if user.is_authenticated %}
+                                   <li><a href="{% url 'logout' %}">LogOut</a></li> 
+                                   <img style="width: 40px;height: 40px;border-radius: 50%;" src="{{request.user.client.profile_pic.url}}" alt="">
+                                   {% else %}
+                                   <li><a href="{% url 'login' %}">LogIn</a></li> 
+                                   {% endif %}
                                 </ul>
                             </div>   
                         </div>
@@ -222,12 +222,12 @@
                         <div class="col-lg-9 col-md-6">
                             <div class="middel_right">
                                 <div class="search_container">
-                                   <!-- <form action="" method="GET">
+                                   <form action="" method="GET">
                                         <div class="search_box">
                                             <input name="q" placeholder="Search product..." type="text" required>
                                             <button type="submit">Search</button> 
                                         </div>
-                                    </form> -->
+                                    </form>
                                 </div> 
                                 <div class="middel_right_info">
                                     <div class="mini_cart_wrapper">
@@ -341,9 +341,6 @@
             <!--header bottom end-->
         </div> 
     </header>
-    <!--header area end-->
-
-    <!--breadcrumbs area start-->
     <div class="breadcrumbs_area">
         <div class="container">   
             <div class="row">
@@ -351,44 +348,36 @@
                     <div class="breadcrumb_content">
                         <ul>
                             <li><a href="/">home</a></li>
-                            <li>Fashion</li>
+                            <li>Search results</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>         
     </div>
+    <p style="text-align: center;">{{product_count}} results available</p>
+    <hr>
 
-    <section class="pt-60 pb-30 gray-bg">
-        <div class="container">
-            <div class="row justify-content-center">
-                {% for data in shop %}
-                {% if data.category == 'fashion' %}
-                <div style="margin: 10px;"
-                class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                    <div class="single-tranding">
-                        <a href="{% url 'shopproduct' data.id %}">
-                            <div class="tranding-pro-img">
-                                <img src="{{data.image.url}}" alt="">
-                            </div>
-                            <div class="tranding-pro-title">
-                                <h3>{{data.name}}</h3>
-                                <h4>{{data.category}}</h4>
-                            </div>
-                            <div class="tranding-pro-price">
-                                <div class="price_box">
-                                    <span class="current_price">Location: {{data.location}}</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+
+    <div class="container_data">
+        {% for products in product %}
+        <a href="{% url 'productdetails' products.id %}">
+            <div style="width: 150px;" class="box_product">
+                <div style="width: 140px; height: 150px;margin: 0% auto;" class="group_i">
+                    <img style="width: 130px; height: 130px;" src="{{products.image.url}}">
                 </div>
-                {% endif %}
-                {% endfor %}
+                <p style="text-align: start; color: black; font-size: 13px;" class="price_text">{{products.product_name}}<span style="color: black;"></span></p>
+                    <div class="tranding-pro-price">
+                        <div style="text-align: start;" class="price_box">
+                            <span class="old_price">Ksh. {{products.old_price}}</span>
+                            <br>
+                            <span class="current_price">Ksh. {{products.new_price}}</span>
+                        </div>
+                    </div>
             </div>
-        </div>
-    </section>
-    <br>
+        </a>
+        {% endfor %}
+    </div>
 
     <footer class="footer_widgets">
         <div class="footer_top">
