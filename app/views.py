@@ -46,7 +46,7 @@ def Home(request):
 def Hot(request):
     pass
 
-
+@login_required(login_url='login')
 def updateItem(request):
     data = json.loads(request.body)
     productId = data['productId']
@@ -70,7 +70,7 @@ def updateItem(request):
         
     return JsonResponse('Item was added', safe=False)
 
-
+@login_required(login_url='login')
 def cart(request):
     if request.user.is_authenticated:
         client = request.user.client
@@ -202,6 +202,7 @@ def Retail(request):
 
 # Account
 # <=====================================================>
+@login_required(login_url='login')
 def myAccount(request):
     client = request.user.client
     form = ClientForm(instance=client)
@@ -220,9 +221,10 @@ def myAccount(request):
         items = []
         order = {'get_cart_total':0, 'get_cart_items':0}
         cartItems = order['get_cart_items']
-    context = {'form':form}
+    context = {'form':form, 'cartItems':cartItems}
     return render(request, 'app/account/my_account.html', context)
 
+@login_required(login_url='login')
 def Makeshop(request):
     owner = request.user
     form = ShopForm(initial={'owner':owner})
@@ -234,6 +236,7 @@ def Makeshop(request):
     context = {'form':form}
     return render(request, 'app/account/makeshop.html', context)
  
+@login_required(login_url='login')
 def addProduct(request, pk):
     product_owner = request.user
     product_shop = Shop.objects.get(id=pk)
@@ -252,13 +255,20 @@ def shopProduct(request, pk):
     shop_products = Product.objects.filter(id=pk)
     shop = Shop.objects.get(id=pk)
     all_products = shop.product_set.all()
-
-    context = {'products': shop_products, 'shop':shop, 'all_products':all_products}
+    if request.user.is_authenticated:
+        client = request.user.client
+        order, created = Order.objects.get_or_create(client=client, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total':0, 'get_cart_items':0}
+        cartItems = order['get_cart_items']
+    context = {'products': shop_products, 'shop':shop, 'all_products':all_products, 'cartItems':cartItems}
     return render(request, 'app/account/product.html', context)
 
 def productDetails(request, pk):
     products = Product.objects.filter(id=pk)
-    
     if request.user.is_authenticated:
         client = request.user.client
         order, created = Order.objects.get_or_create(client=client, complete=False)
@@ -271,13 +281,25 @@ def productDetails(request, pk):
     context = {'products':products, 'items':items, 'order':order, 'cartItems':cartItems}
     return render(request, 'app/account/product-details.html', context)
 
+@login_required(login_url='login')
 def myShop(request):
     product = Product.objects.all()
     shop = Shop.objects.all()
-    context = {'shop':shop, 'product':product}
+    
+    if request.user.is_authenticated:
+        client = request.user.client
+        order, created = Order.objects.get_or_create(client=client, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total':0, 'get_cart_items':0}
+        cartItems = order['get_cart_items']
+    context = {'shop':shop, 'product':product, 'cartItems':cartItems}
     return render(request, 'app/account/my_shops.html', context)
 
 
+@login_required(login_url='login')
 def updateShop(request, pk):
     shop = Shop.objects.get(id=pk)
     form = ShopForm(instance=shop)
@@ -290,6 +312,7 @@ def updateShop(request, pk):
     context = {'form':form, 'shop':shop}
     return render(request, 'app/account/makeshop.html', context)
 
+@login_required(login_url='login')
 def deleteShop(request, pk):
     shop = Shop.objects.get(id=pk)
     if request.method == 'POST':
@@ -297,6 +320,7 @@ def deleteShop(request, pk):
         return redirect('my_shop')
     return render(request, 'app/delete.html', {'obj':shop})
 
+@login_required(login_url='login')
 def updateProduct(request, pk):
     product_owner = request.user
     product_shop = Shop.objects.get(id=pk)
@@ -311,12 +335,14 @@ def updateProduct(request, pk):
     context = {'form':form}
     return render(request, 'app/account/add_product.html', context)
 
+@login_required(login_url='login')
 def deleteProduct(request, pk):
     product = Product.objects.get(id=pk)
     if request.method == 'POST':
         product.delete()
         return redirect('my_shop')
     return render(request, 'app/delete.html', {'obj':product})
+
 
 def Register(request):
     if request.method == 'POST':
@@ -365,6 +391,7 @@ def logIn(request):
         return render(request, 'app/account/login.html')
     return render(request, 'app/account/login.html')
 
+@login_required(login_url='login')
 def logOut(request):
     if request.method == 'POST':
         auth.logout(request)
@@ -372,7 +399,8 @@ def logOut(request):
     return render(request, 'app/account/logout.html')
 
 # Other
-def contactUs(request):
+
+def contactUs(request):        
     if request.method == 'POST':
         name = request.POST['name']
         email = request.POST['email']
@@ -384,13 +412,43 @@ def contactUs(request):
         messages.info(request, 'Message send successfully')
         return redirect('contact_us')
     
-    return render(request, 'app/menu/contact.html')
+    if request.user.is_authenticated:
+        client = request.user.client
+        order, created = Order.objects.get_or_create(client=client, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total':0, 'get_cart_items':0}
+        cartItems = order['get_cart_items']
+    context = {'cartItems':cartItems}
+    return render(request, 'app/menu/contact.html', context)
 
 def aboutUs(request):
-    return render(request, 'app/menu/about.html')
+    if request.user.is_authenticated:
+        client = request.user.client
+        order, created = Order.objects.get_or_create(client=client, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total':0, 'get_cart_items':0}
+        cartItems = order['get_cart_items']
+    context = {'cartItems':cartItems}
+    return render(request, 'app/menu/about.html', context)
 
 def privacyPolicy(request):
-    return render(request, 'app/menu/privacy-policy.html')
+    if request.user.is_authenticated:
+        client = request.user.client
+        order, created = Order.objects.get_or_create(client=client, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total':0, 'get_cart_items':0}
+        cartItems = order['get_cart_items']
+    context = {'cartItems':cartItems}
+    return render(request, 'app/menu/privacy-policy.html', context)
 
 
 
