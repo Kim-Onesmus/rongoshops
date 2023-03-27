@@ -6735,11 +6735,13 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .footer_widgets.sidebar_widgets .footer_top {
   padding-bottom: 0;
   border-bottom: 0;
+  margin: 0% auto;
+  justify-content: center;
 }
 .footer_widgets.sidebar_widgets .footer_top_inner {
-  padding: 56px 0 52px;
+  /* padding: 56px 0 52px; */
   border-top: 1px solid #ebebeb;
-  border-bottom: 1px solid #ebebeb;
+  border-bottom: 3px solid #ebebeb;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .footer_widgets.sidebar_widgets .footer_top_inner {
@@ -7852,7 +7854,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   margin-bottom: 0;
 }
 
-/*my account css end*/
+/*my  css end*/
 /* 10. about page css here */
 .about_section {
   padding-bottom: 54px;

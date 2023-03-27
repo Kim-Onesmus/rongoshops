@@ -57,7 +57,7 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True, blank=True)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True, blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False)
     transaction_id = models.CharField(max_length=100, null=True)
@@ -88,8 +88,8 @@ class Order(models.Model):
     	return total 
 
 class OrderItem(models.Model):
-	product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-	order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+	product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+	order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
 	quantity = models.IntegerField(default=0, null=True, blank=True)
 	date_added = models.DateTimeField(auto_now_add=True)
 

@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('',include('app.urls')),
+    path('',include('pwa.urls')),
     path("RongoShops/", admin.site.urls),
 ]
 

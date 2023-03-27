@@ -349,8 +349,6 @@ def deleteShop(request, pk):
 
 @login_required(login_url='login')
 def updateProduct(request, pk):
-    product_owner = request.user
-    product_shop = Shop.objects.get(id=pk)
     product = Product.objects.get(id=pk)
     form = ProductForm(instance=product)
     if request.method == 'POST':
@@ -361,6 +359,7 @@ def updateProduct(request, pk):
 
     context = {'form':form}
     return render(request, 'app/account/add_product.html', context)
+
 
 @login_required(login_url='login')
 def deleteProduct(request, pk):
