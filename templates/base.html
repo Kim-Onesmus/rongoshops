@@ -195,7 +195,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-6">
                             <div class="support_info">
-                                <p>Hello: {{user.username}}</p>
+                                <p>Hello {{user.username}}</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
@@ -351,7 +351,7 @@
         </div>
     </header>
     {% for message in messages %}
-    <div style="position: fixed; left: 50%; transform: translate(-50%, -50%); width: 60%; z-index: 9999;" class="alert {{message.tags}} alert-dismissible" role="alert">
+    <div id="alarmmsg" style="position: fixed; left: 50%; transform: translate(-50%, -50%); width: 60%; z-index: 9999;" class="alert {{message.tags}} alert-dismissible" role="alert">
         <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -367,10 +367,10 @@
     <script src="{% static 'js/main.js' %}"></script>
     <script>
 
-        document.getElementById("alarmmsg").innerHTML = msg;
+        document.getElementById("#alarmmsg").innerHTML = msg;
 
         setTimeout(function () {
-            document.getElementById("alarmmsg").innerHTML = '';
+            document.getElementById("#alarmmsg").innerHTML = '';
         }, 3000);
     </script>
 </body>
