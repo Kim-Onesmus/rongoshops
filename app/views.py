@@ -260,7 +260,16 @@ def Makeshop(request):
         if form.is_valid():
             form.save()
             return redirect('my_shop')
-    context = {'form':form}
+    if request.user.is_authenticated:
+        client = request.user.client
+        order, created = Order.objects.get_or_create(client=client, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total':0, 'get_cart_items':0}
+        cartItems = order['get_cart_items']
+    context = {'form':form, 'cartItems':cartItems}
     return render(request, 'app/account/makeshop.html', context)
  
 @login_required(login_url='register')
@@ -275,8 +284,16 @@ def addProduct(request, pk):
             form.save()
             messages.info(request, 'Product added')
             return redirect('my_shop')
-
-    context = {'form':form}
+    if request.user.is_authenticated:
+        client = request.user.client
+        order, created = Order.objects.get_or_create(client=client, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total':0, 'get_cart_items':0}
+        cartItems = order['get_cart_items']
+    context = {'form':form, 'cartItems':cartItems}
     return render(request, 'app/account/add_product.html', context)
 
 def shopProduct(request, pk):
@@ -437,7 +454,11 @@ def logOut(request):
 @login_required(login_url='register')
 def Lipa(request):
     user = request.user
-    
+    try:
+        shop = Shop.objects.get(owner=user)
+    except Shop.DoesNotExist:
+        messages.error(request, 'You need to create a shop before requesting Lipa Na M-Pesa')
+        return redirect('makeshop')
     if request.method == 'POST':
         short_code = request.POST['short_code']
         reference = request.POST['reference']
