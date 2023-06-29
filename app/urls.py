@@ -26,7 +26,8 @@ urlpatterns = [
     path('cyber', views.Cyber, name='cyber'),
     path('retail', views.Retail, name='retail'),
     
-    
+    #M-Pesa
+    path('lipa', views.Lipa, name='lipa'), 
     
     # Account
     path('my_account', views.myAccount, name='my_account'),
@@ -36,7 +37,6 @@ urlpatterns = [
     path('add_product/<str:pk>/', views.addProduct, name='add_product'),
     path('my_shop', views.myShop, name='my_shop'),
     path('register', views.Register, name='register'),
-    path('login', views.logIn, name='login'),
     path('logout', views.logOut, name='logout'),
     
     # Password reset

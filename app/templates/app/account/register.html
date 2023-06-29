@@ -1,105 +1,144 @@
 {% load static %}
-<!doctype html>
-<html class="no-js" lang="en">
-
-<!-- register.html  03:24:53 GMT -->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>RongoShops</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logoo.png' %}">
-    
-    <!-- CSS 
-    ========================= -->
-   
-
-    <!-- Plugins CSS -->
-    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
-    
-    <!-- Main Style CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-
-</head>
-
-<body>
-	<section class="account">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-10">
-					<div class="account-contents" style="background: url('/static/images/signup.jpg'); background-size: cover;">
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class="account-thumb">
-                                    <h2>Register now</h2>
-                                    <p>It is more advantage to have an Account because:
-                                        <ol style="text-align:start;">
-                                            <li>You can make a shop</li>
-                                            <li>You can shop in the site</li>
-                                            <li>You add products to cat and wishlist</li>
-                                            <li>No limitations to some parts of the site</li>
-                                        </ol>
-                                    </p>
-                                </div>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>RongoShops</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logoo.png' %}">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    </head>
+    <body>
+        <div id="container" class="container">
+            <!-- FORM SECTION -->
+            <div class="row">
+                <!-- SIGN UP -->
+                <div class="col align-items-center flex-col sign-up">
+                    <div class="form-wrapper align-items-center">
+                        <div class="form sign-up">
+                            {% for data in messages %}
+                            {{data}}
+                            {% endfor %}
+                            <form action="" method="post">
+                                {% csrf_token %}
+                            <div class="input-group">
+                                <i class='bx bxs-user'></i>
+                                <input type="text" placeholder="Username" name="username" required>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class="account-content">
-                                    <form action="" method="POST">
-                                        {% csrf_token %}
-                                        {% for text in messages %}
-                                        {{text}}
-                                        {% endfor %}
-                                        <div class="single-acc-field">
-                                            <label for="name">Username</label>
-                                            <input type="text" id="name" name="username" placeholder="Enter username" required>
-                                        </div>
-                                        <div class="single-acc-field">
-                                            <label for="email">Email</label>
-                                            <input type="email" id="email" name="email" placeholder="Enter your Email" required>
-                                        </div>
-                                        <div class="single-acc-field">
-                                            <label for="password">Password</label>
-                                            <input type="password" name="password" id="password" placeholder="At least 6 Charecter" required>
-                                        </div>
-                                        <div class="single-acc-field">
-                                            <label for="password">Confirm Password</label>
-                                            <input type="password" name="password1" id="password" placeholder="Retype password" required>
-                                        </div>
-                                        <div class="single-acc-field boxes">
-                                            <input type="checkbox" id="checkbox">
-                                            <label for="checkbox">I'm not a robot</label>
-                                        </div>
-                                        <div class="single-acc-field">
-                                            <button type="submit">Register now</button>
-                                        </div>
-                                        <a href="{% url 'login' %}">Already account? Login</a>
-                                    </form>
-                                </div>
+                            <div class="input-group">
+                                <i class='bx bx-mail-send'></i>
+                                <input type="email" placeholder="Email" name="email" required>
                             </div>
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input type="password" placeholder="Password" name="password" required>
+                            </div>
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input type="password" placeholder="Confirm password" name="password1" required>
+                            </div>
+                            <button type="submit">
+                                Sign up
+                            </button>
+                            </form>
+                            <p>
+                                <span>
+                                    Already have an account?
+                                </span>
+                                <b onclick="toggle()" class="pointer">
+                                    Sign in here
+                                </b>
+                            </p>
                         </div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+                    </div>
+                
+                </div>
 
-
-<!-- JS
-============================================ -->
-
-
-<!-- Plugins JS -->
-<script src="{% static 'js/plugins.js' %}"></script>
-
-<!-- Main JS -->
-<script src="{% static 'js/main.js' %}"></script>
-
-
-
-</body>
-
-<!-- register.html  03:24:53 GMT -->
-</html>
+                <div class="col align-items-center flex-col sign-in">
+                    <div class="form-wrapper align-items-center">
+                        <div class="form sign-in">
+                            {% for data in messages %}
+                            {{data}}
+                            {% endfor %}
+                            <form action="" method="post">
+                                {% csrf_token %}
+                            <div class="input-group">
+                                <i class='bx bxs-user'></i>
+                                <input type="text" placeholder="Username" name="username" required>
+                            </div>
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input type="password" placeholder="Password" name="password" required>
+                            </div>
+                            <button type="submit">
+                                Sign in
+                            </button>
+                            </form>
+                            <p>
+                                <b>
+                                    <a href="{% url 'reset_password' %}">Forgot password?</a>
+                                </b>
+                            </p>
+                            <p>
+                                <span>
+                                    Don't have an account?
+                                </span>
+                                <b onclick="toggle()" class="pointer">
+                                    Sign up here
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-wrapper">
+            
+                    </div>
+                </div>
+                <!-- END SIGN IN -->
+            </div>
+            <!-- END FORM SECTION -->
+            <!-- CONTENT SECTION -->
+            <div class="row content-row">
+                <!-- SIGN IN CONTENT -->
+                <div class="col align-items-center flex-col">
+                    <div class="text sign-in">
+                        <h2>
+                            Welcome back
+                        </h2>
+        
+                    </div>
+                    <div class="img sign-in">
+            
+                    </div>
+                </div>
+                <!-- END SIGN IN CONTENT -->
+                <!-- SIGN UP CONTENT -->
+                <div class="col align-items-center flex-col">
+                    <div class="img sign-up">
+                    
+                    </div>
+                    <div class="text sign-up">
+                        <h2>
+                            Welcome
+                        </h2>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        let container = document.getElementById('container')
+    
+        toggle = () => {
+            container.classList.toggle('sign-in')
+            container.classList.toggle('sign-up')
+        }
+    
+        setTimeout(() => {
+            container.classList.add('sign-in')
+        }, 200)
+        </script>
+    </body>
+    </html>

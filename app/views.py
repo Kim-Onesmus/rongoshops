@@ -73,7 +73,7 @@ def Search(request):
 def Hot(request):
     pass
 
-@login_required(login_url='login')
+@login_required(login_url='register')
 def updateItem(request):
     data = json.loads(request.body)
     productId = data['productId']
@@ -97,7 +97,7 @@ def updateItem(request):
         
     return JsonResponse('Item was added', safe=False)
 
-@login_required(login_url='login')
+@login_required(login_url='register')
 def cart(request):
     if request.user.is_authenticated:
         client = request.user.client
@@ -229,7 +229,7 @@ def Retail(request):
 
 # Account
 # <=====================================================>
-@login_required(login_url='login')
+@login_required(login_url='register')
 def myAccount(request):
     client = request.user.client
     form = ClientForm(instance=client)
@@ -251,7 +251,7 @@ def myAccount(request):
     context = {'form':form, 'cartItems':cartItems}
     return render(request, 'app/account/my_account.html', context)
 
-@login_required(login_url='login')
+@login_required(login_url='register')
 def Makeshop(request):
     owner = request.user
     form = ShopForm(initial={'owner':owner})
@@ -263,7 +263,7 @@ def Makeshop(request):
     context = {'form':form}
     return render(request, 'app/account/makeshop.html', context)
  
-@login_required(login_url='login')
+@login_required(login_url='register')
 def addProduct(request, pk):
     product_owner = request.user
     product_shop = Shop.objects.get(id=pk)
@@ -308,7 +308,7 @@ def productDetails(request, pk):
     context = {'products':products, 'items':items, 'order':order, 'cartItems':cartItems}
     return render(request, 'app/account/product-details.html', context)
 
-@login_required(login_url='login')
+@login_required(login_url='register')
 def myShop(request):
     product = Product.objects.all()
     shop = Shop.objects.all()
@@ -326,7 +326,7 @@ def myShop(request):
     return render(request, 'app/account/my_shops.html', context)
 
 
-@login_required(login_url='login')
+@login_required(login_url='register')
 def updateShop(request, pk):
     shop = Shop.objects.get(id=pk)
     form = ShopForm(instance=shop)
@@ -339,7 +339,7 @@ def updateShop(request, pk):
     context = {'form':form, 'shop':shop}
     return render(request, 'app/account/makeshop.html', context)
 
-@login_required(login_url='login')
+@login_required(login_url='register')
 def deleteShop(request, pk):
     shop = Shop.objects.get(id=pk)
     if request.method == 'POST':
@@ -347,7 +347,7 @@ def deleteShop(request, pk):
         return redirect('my_shop')
     return render(request, 'app/delete.html', {'obj':shop})
 
-@login_required(login_url='login')
+@login_required(login_url='register')
 def updateProduct(request, pk):
     product = Product.objects.get(id=pk)
     form = ProductForm(instance=product)
@@ -361,7 +361,7 @@ def updateProduct(request, pk):
     return render(request, 'app/account/add_product.html', context)
 
 
-@login_required(login_url='login')
+@login_required(login_url='register')
 def deleteProduct(request, pk):
     product = Product.objects.get(id=pk)
     if request.method == 'POST':
@@ -372,56 +372,53 @@ def deleteProduct(request, pk):
 
 def Register(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        password1 = request.POST['password1']
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        password1 = request.POST.get('password1')
+        
+        if username and email and password and password1:
 
-        if password == password1:
-            if Client.objects.filter(username=username).exists():
-                messages.error(request, 'Username exist')
-                return redirect('register')
-            elif Client.objects.filter(email=email).exists():
-                messages.error(request, 'Email exist')
-                return redirect('register')
+            if password == password1:
+                if Client.objects.filter(username=username).exists():
+                    messages.error(request, 'Username exist')
+                    return redirect('register')
+                elif Client.objects.filter(email=email).exists():
+                    messages.error(request, 'Email exist')
+                    return redirect('register')
+                else:
+                    user = User.objects.create_user(username=username, email=email, password=password)
+                    user.save()
+
+                    client_details = Client.objects.create(user=user, username=user.username, email=email)
+                    client_details.save()
+
+                    subject = 'Welcome to RongoShops'
+                    message = f'Hello {user.username}, thank you for registering in ShopsRongo.Login to experience next level of quality and secure shopping'
+                    email_from = settings.EMAIL_HOST_USER
+                    recipient_list = [user.email, ]
+                    send_mail( subject, message, email_from, recipient_list )
+                    
+                    messages.info(request, 'Account created')
+                    return redirect('register')
             else:
-                user = User.objects.create_user(username=username, email=email, password=password)
-                user.save()
-
-                client_details = Client.objects.create(user=user, username=user.username, email=email)
-                client_details.save()
-
-                subject = 'Welcome to RongoShops'
-                message = f'Hello {user.username}, thank you for registering in ShopsRongo.Login to experience next level of quality and secure shopping'
-                email_from = settings.EMAIL_HOST_USER
-                recipient_list = [user.email, ]
-                send_mail( subject, message, email_from, recipient_list )
-                
-                messages.info(request, 'Account created')
-                return redirect('login')
+                messages.error(request, 'Password dont match')
+                return redirect('register')
         else:
-            messages.error(request, 'Password dont match')
-            return redirect('register')
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = auth.authenticate(username=username, password=password)
+
+            if user is not None:
+                auth.login(request, user)  # Log in the existing user
+                return redirect('my_account')
+            else:
+                messages.error(request, 'Invalid login details')
+                return redirect('register')
     else:
         return render(request, 'app/account/register.html')
     return render(request, 'app/account/register.html')
-
-def logIn(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-
-        user = auth.authenticate(username=username, password=password,)
-
-        if user is not None:
-            auth.login(request, user)
-            return redirect('my_account')
-        else:
-            messages.error(request, 'Invalid details')
-            return redirect('login')
-    else:
-        return render(request, 'app/account/login.html')
-    return render(request, 'app/account/login.html')
 
 @login_required(login_url='login')
 def logOut(request):
@@ -431,6 +428,9 @@ def logOut(request):
     return render(request, 'app/account/logout.html')
 
 # Other
+
+def Lipa(request):
+    return render(request, 'app/mpesa/lipa.html')
 
 def contactUs(request):
     user = request.user    

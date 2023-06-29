@@ -1,13 +1,10 @@
 {% load static %}
-{% load pwa %}
 <!doctype html>
 <html class="no-js" lang="en">
 
 
 <!--   03:20:39 GMT -->
 <head>
-    {% progressive_web_app_meta %}
-    <link rel="manifest" href="/manifest.json">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>RongoShops</title>
@@ -158,11 +155,11 @@
                                         {% if user.is_authenticated %}
                                         <a href="{% url 'logout' %}">LogOut</a> 
                                         {% else %}
-                                        <li><a href="{% url 'register' %}">Register</a></li>
-                                        <li><a href="{% url 'login' %}">LogIn</a></li>
+                                        <li><a href="{% url 'register' %}">Register/Login</a></li>
                                         {% endif %}
                                     </ul>
                                 </li>
+                                <li><a href="{% url 'lipa' %}">Request Lipa Na M-Pesa</a></li>
                                 <li><a href="{% url 'contact_us' %}"> Contact Us</a></li>
                                 <li><a href="{% url 'about_us' %}"> About Us</a></li>
                                 <li><a href="{% url 'privacy_policy' %}"> Privacy policy</a></li>
@@ -194,7 +191,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-6">
                             <div class="support_info">
-                                <p>Email: <a href="mailto:">onesmuskimanzi254@gmail.com</a></p>
+                                <p>Hello {{user.username}}</a></p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
@@ -205,7 +202,7 @@
                                    <li><a href="{% url 'logout' %}">LogOut</a></li> 
                                    <img style="width: 40px;height: 40px;border-radius: 50%;" src="{{request.user.client.profile_pic.url}}" alt="">
                                    {% else %}
-                                   <li><a href="{% url 'login' %}">LogIn</a></li> 
+                                   <li><a href="{% url 'register' %}">LogIn</a></li> 
                                    {% endif %}
                                 </ul>
                             </div>   
@@ -327,11 +324,11 @@
                                                 {% if user.is_authenticated %}
                                                 <li><a href="{% url 'logout' %}">LogOut</a></li>
                                                 {% else %}
-                                                <li><a href="{% url 'register' %}">Register</a></li>
-                                                <li><a href="{% url 'login' %}">LogIn</a></li>
+                                                <li><a href="{% url 'register' %}">Register/Login</a></li>
                                                 {% endif %}
                                             </ul>
                                         </li>
+                                        <li><a href="{% url 'lipa' %}">Request Lipa Na M-Pesa</a></li>
                                         <li><a href="{% url 'contact_us' %}"> Contact Us</a></li>
                                         <li><a href="{% url 'about_us' %}"> About Us</a></li>
                                         <li><a href="{% url 'privacy_policy' %}"> Privacy policy</a></li>
@@ -378,21 +375,15 @@
         </div>
     </section>
     <!--slider area end-->
-
-    <!--Tranding product-->
     <section class="pt-60 pb-30 gray-bg">
         <div class="container">
             <div class="row">
                 <div class="col text-center">
                     <div class="section-title">
-                        <h2>For you</h2>
-                        <hr>
+                        <h2>For You</h2>
                     </div>
                 </div>
             </div>
-            <!-- <div class="container_data">
-                <a href="{{product}}">{{product}}</a>
-            </div> -->
             <div class="row justify-content-center">
                 {% for data in shop %}
                 <div style="margin: 10px;"
@@ -473,29 +464,27 @@
     <!--shipping area end-->
 	
 	
-    <!--footer area start-->
-    <footer class="footer_widgets">
-        <div class="footer_top">
+    <footer style="margin-bottom: 0%;" class="footer_widgets">
+        <div style="margin-bottom: 0%;" class="footer_top">
             <div class="container">
                 <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="widgets_container contact_us">
-                        <div class="footer_">
-                            <a href="/"><img src="{% static 'images/logo1.png' %}" alt=""></a>
-                            <hr>
-                        </div>
-                        <div class="footer_contact">
-                            <p>RongoShops is developed to assist comrades and the entire Rongo University neigbours in advertising their businesses and their products</p>
-                            <p>It also helps Customers access the product they need instantly through the website</p>
+                <div style="margin: 0% auto;" class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="widgets_container widget_menu">
+                        <h3>Quick Links</h3><hr>
+                        <div class="footer_menu">
+                            <ul>
+                                <li><a href="{% url 'my_account' %}">My Account</a></li>
+                                <li><a href="{% url 'makeshop' %}">Makeshop</a></li>
+                                <li><a href="{% url 'my_shop' %}">My Shop</a></li>
+                                <li><a href="{% url 'register' %}">Register/Login</a></li>
+                                <li><a href="{% url 'logout' %}">LogOut</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <br>
-                <br>
                 <div style="margin: 0% auto;" class="col-lg-4 col-md-6">
                     <div class="widgets_container newsletter">
-                        <h3>Follow Us</h3>
-                        <hr>
+                        <h3>Follow Us</h3><hr>
                         <div class="footer_social_link">
                             <ul>
                                 <li><a style="background-color: green;" class="whatsapp" href="https://chat.whatsapp.com/H7fUiSiMsLS3uDy3ZRMH9A" title="Whatsapp"><i class="fa fa-whatsapp"></i></a></li> Join Whatsapp Group <br><br>
@@ -505,7 +494,7 @@
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
             </div>
         </div>
         <div class="footer_bottom">
@@ -513,6 +502,11 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6">
                         <div class="copyright_area">
+                            <p>copyright_area</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer_payment text-right">
                             <p> Designed and developed by <a href="">KimTech</a></p>
                         </div>
                     </div>
@@ -520,9 +514,6 @@
             </div>
         </div> 
     </footer>
-    <!--footer area end-->
-<!-- JS
-============================================ -->
 
 
 

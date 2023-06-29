@@ -280,14 +280,14 @@ section.shipping_area {
 }
 
 .footer_top {
-    background: #1d1678f0;
-    padding: 60px 0 60px;
+    background: black;
+    padding: 10px 0 10px;
     color: #fff;
 	border-bottom: 0;
 }
 
 .footer_bottom {
-    background: #1D1678;
+    background: rgb(39, 38, 38);
     color: #fff;
 }
 
@@ -496,6 +496,7 @@ section.shipping_area {
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    width: 100%;
 }
 
 .single-acc-field button:hover {

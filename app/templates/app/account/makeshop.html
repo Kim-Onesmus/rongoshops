@@ -1,93 +1,62 @@
+{% extends 'main.html' %}
 {% load static %}
-<!doctype html>
-<html class="no-js" lang="en">
-
-<!-- register.html  03:24:53 GMT -->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>RongoShops</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logoo.png' %}">
-    
-    <!-- CSS 
-    ========================= -->
-   
-
-    <!-- Plugins CSS -->
-    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
-    
-    <!-- Main Style CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-
-</head>
-
-<body>
-	<section class="account">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-10">
-					<div class="account-contents" style="background: url('assets/img/signup.jpg'); background-size: cover;">
+{% block content %}
+<div class="breadcrumbs_area">
+    <div class="container">   
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/">home</a></li>
+                        <li>Make Shop</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>         
+</div>
+<section class="account">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div style="background-color: aliceblue;" class="account-content">
+                    <h4 style="text-align: center;">Make Shop</h4><hr>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
                         <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class="account-thumb">
-                                    <a style="background-color: green" class="btn btn-warning" href="/"> &#8592; Go To Home</a>
-                                    <br><br><br>
-                                    <h2>Make Your Shop Now</h2>
-                                    <p>When you make your shop:
-                                        <ol style="text-align:start;">
-                                            <li>Other users can see your shop</li>
-                                            <li>Other users can chart you through whatsapp or email</li>
-                                            <li>Customer can buy the products in the shop through this site</li>
-                                        </ol>
-                                    </p>
+                            <div class="single-acc-field">
+                                <!-- <label for="name">Shop Owner</label> -->
+                                {{form.owner.as_hidden}}
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="single-acc-field">
+                                    <label for="name">Name of Shop</label>
+                                    {{form.name}}
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class="account-content">
-                                    <form action="" method="POST" enctype="multipart/form-data">
-                                        {% csrf_token %}
-                                        <div class="single-acc-field">
-                                            <!-- <label for="name">Shop Owner</label> -->
-                                            {{form.owner.as_hidden}}
-                                        </div>
-                                        <div class="single-acc-field">
-                                            <label for="name">Name of Shop</label>
-                                            {{form.name}}
-                                        </div>
-                                        <div class="single-acc-field">
-                                            <label for="email">Shop Category</label>
-                                            {{form.category}}
-                                        </div>
-                                        <div class="single-acc-field">
-                                            <label for="password">Shop Location</label>
-                                            {{form.location}}
-                                        </div>
-                                        <div class="single-acc-field">
-                                            <label for="password">Shop Image</label>
-                                            {{form.image}}
-                                        </div>
-                                        <div class="single-acc-field">
-                                            <button type="submit">Makeshop</button>
-                                        </div>
-                                    </form>
+                            <div class="col-lg-6">
+                                <div class="single-acc-field">
+                                    <label for="email">Shop Category</label>
+                                    {{form.category}}
                                 </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="single-acc-field">
+                                    <label for="password">Shop Location</label>
+                                    {{form.location}}
+                                </div>
+                            </div>
+                            <div class="single-acc-field">
+                                <label for="password">Shop Image</label>
+                                {{form.image}}
                             </div>
                         </div>
-					</div>
+                        <div class="single-acc-field">
+                            <button type="submit">Makeshop</button>
+                        </div>
+                    </form>
 				</div>
 			</div>
 		</div>
 	</section>
-
-
-<!-- JS
-============================================ -->
-
-</body>
-
-<!-- register.html  03:24:53 GMT -->
-</html>
+{% endblock content %}

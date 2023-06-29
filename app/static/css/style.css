@@ -4461,17 +4461,17 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 /*  07. footer area css here */
 .footer_top {
   background: #f8f8f8;
-  padding: 50px 0 43px;
+  padding: 10px 0 10px;
   border-bottom: 1px solid #ebebeb;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .footer_top {
-    padding: 50px 0 36px;
-  }
+    padding: 10px 0 10px;
+    }
 }
 @media only screen and (max-width: 767px) {
   .footer_top {
-    padding: 50px 0 6px;
+    padding: 10px 0 10px;
   }
 }
 
@@ -6732,7 +6732,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   font-size: 16px;
 }
 
-.footer_widgets.sidebar_widgets .footer_top {
+..sidebar_widgets .footer_top {
   padding-bottom: 0;
   border-bottom: 0;
   margin: 0% auto;
@@ -6745,12 +6745,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .footer_widgets.sidebar_widgets .footer_top_inner {
-    padding: 56px 0 40px;
+    padding: 10px 0 10px;
   }
 }
 @media only screen and (max-width: 767px) {
   .footer_widgets.sidebar_widgets .footer_top_inner {
-    padding: 56px 0 35px;
+    padding: 10px 0 10px;
   }
 }
 
@@ -7055,7 +7055,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 @media only screen and (max-width: 767px) {
-  .footer_widgets.other_widgets .footer_top_inner {
+  ..other_widgets .footer_top_inner {
     padding: 55px 0 35px;
   }
 }

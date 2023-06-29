@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'app',
-    'pwa',
 ]
 
 MIDDLEWARE = [
@@ -126,7 +125,6 @@ STATICFILES_DIR = [
 ]
 
 
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'app/static/js/', 'serviceworker.js')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -145,34 +143,3 @@ EMAIL_HOST_USER = 'onesmuskimanzi254@gmail.com'
 EMAIL_HOST_PASSWORD = 'tiywbfhlnwqifsgp'
 EMAIL_USE_SSL = False
 
-
-PWA_APP_NAME = 'RongoShops'
-PWA_APP_DESCRIPTION = "RongoShops"
-PWA_APP_THEME_COLOR = '#FF007F'
-PWA_APP_BACKGROUND_COLOR = '#ffffff'
-PWA_APP_DISPLAY = 'standalone'
-PWA_APP_SCOPE = '/'
-PWA_APP_ORIENTATION = 'any'
-PWA_APP_START_URL = '/'
-PWA_APP_STATUS_BAR_COLOR = 'default'
-PWA_APP_ICONS = [
-    {
-        'src': 'static/images/logoo.png',
-        'sizes': '160x160'
-    }
-]
-PWA_APP_ICONS_APPLE = [
-    {
-        'src': 'static/images/logoo.png',
-        'sizes': '160x160'
-    }
-]
-PWA_APP_SPLASH_SCREEN = [
-    {
-        'src': 'static/images/logoo.png',
-        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
-    }
-]
-PWA_APP_DIR = 'ltr'
-PWA_APP_LANG = 'en-US'
-PWA_APP_DEBUG_MODE = False
