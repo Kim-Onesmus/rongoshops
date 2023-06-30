@@ -107,3 +107,11 @@ class Contact(models.Model):
     
     def __str__(self):
         return(self.name)
+    
+    
+class LipaNaMpesa(models.Model):
+    short_code = models.PositiveIntegerField()
+    reference = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.short_code

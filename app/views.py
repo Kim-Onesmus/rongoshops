@@ -430,6 +430,10 @@ def logOut(request):
 # Other
 
 def Lipa(request):
+    if request.method == 'POST':
+        short_code = request.POST['short_code']
+        reference = request.POST['reference']
+        
     return render(request, 'app/mpesa/lipa.html')
 
 def contactUs(request):
