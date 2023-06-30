@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
-from .models import Client, Shop, Product, Contact, Order, OrderItem
+from .models import Client, Shop, Product, Contact, Order, OrderItem, LipaNaMpesa
 from .forms import ClientForm, ShopForm, ProductForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -434,7 +434,36 @@ def Lipa(request):
         short_code = request.POST['short_code']
         reference = request.POST['reference']
         
-    return render(request, 'app/mpesa/lipa.html')
+        if len(short_code) == 6:
+            if LipaNaMpesa.objects.filter(short_code=short_code).exists():
+                messages.error(request, 'Business Short Code already exists')
+                return redirect('lipa')
+            else:
+                lipa_details = LipaNaMpesa.objects.create(short_code=short_code, reference=reference)
+                lipa_details.save()
+            
+                subject = 'Request Lipa Na M-Pesa'
+                message = f'Hello {user.username}, thank you for requesting Lipa Na M-Pesa, once we Intergrate your business Short Code we will get back to you'
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = [user.email, ]
+                send_mail( subject, message, email_from, recipient_list )
+                
+                messages.info(request, 'Request Submitted Succesfully')
+                return redirect('lipa')
+        else:
+            messages.error(request, 'Enter a valid Business Short Code')
+            return redirect('lipa')
+    if request.user.is_authenticated:
+        client = request.user.client
+        order, created = Order.objects.get_or_create(client=client, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total':0, 'get_cart_items':0}
+        cartItems = order['get_cart_items']
+    context = {'cartItems':cartItems}   
+    return render(request, 'app/mpesa/lipa.html', context)
 
 def contactUs(request):
     user = request.user    
