@@ -19,8 +19,13 @@
                 <div class="col align-items-center flex-col sign-up">
                     <div class="form-wrapper align-items-center">
                         <div class="form sign-up">
-                            {% for data in messages %}
-                            {{data}}
+                            {% for message in messages %}
+                            <div style="position: fixed; left: 50%; transform: translate(-50%, -50%); width: 60%; z-index: 9999;" class="alert {{message.tags}} alert-dismissible" role="alert">
+                                <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{message | safe}}
+                            </div>
                             {% endfor %}
                             <form action="" method="post">
                                 {% csrf_token %}
@@ -60,8 +65,13 @@
                 <div class="col align-items-center flex-col sign-in">
                     <div class="form-wrapper align-items-center">
                         <div class="form sign-in">
-                            {% for data in messages %}
-                            {{data}}
+                            {% for message in messages %}
+                            <div style="position: fixed; left: 50%; transform: translate(-50%, -50%); width: 60%; z-index: 9999;" class="alert {{message.tags}} alert-dismissible" role="alert">
+                                <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{message | safe}}
+                            </div>
                             {% endfor %}
                             <form action="" method="post">
                                 {% csrf_token %}

@@ -3,6 +3,7 @@
 <html class="no-js" lang="en">
 
 <!--   03:20:39 GMT -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -11,14 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logoo.png' %}">
-    
+
     <!-- CSS 
     ========================= -->
-   
+
 
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
-    
+
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
@@ -30,7 +31,7 @@
     <!--header area start-->
     <!--Offcanvas menu area start-->
     <div class="off_canvars_overlay">
-            
+
     </div>
     <div class="Offcanvas_menu">
         <div class="container">
@@ -41,12 +42,12 @@
                     </div>
                     <div class="Offcanvas_menu_wrapper">
                         <div class="canvas_close">
-                              <a href="javascript:void(0)"><i class="ion-android-close"></i></a>  
+                            <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
                         </div>
                         {% if user.is_authenticated %}
                         <div style="margin: 0% auto;" class="img">
                             <img style="width: 40px;height: 40px;border-radius: 50%; margin: 0% auto;"
-                            src="{{request.user.client.profile_pic.url}}" alt="">
+                                src="{{request.user.client.profile_pic.url}}" alt="">
                             <p>Hello {{user.username}}</p>
                         </div>
                         {% endif %}
@@ -55,10 +56,10 @@
                         </div>
                         <div class="top_right text-right">
                             <ul>
-                               <li><a href="{% url 'my_account' %}"> My Account </a></li> 
-                               <li><a href="{% url 'logout' %}"> LogOut </a></li> 
+                                <li><a href="{% url 'my_account' %}"> My Account </a></li>
+                                <li><a href="{% url 'logout' %}"> LogOut </a></li>
                             </ul>
-                        </div> 
+                        </div>
                         <!-- <div class="search_container">
                            <form action="" method="GET">
                                 <div class="search_box">
@@ -67,7 +68,7 @@
                                 </div>
                             </form>
                         </div>  -->
-                        
+
                         <div class="middel_right_info">
                             <!-- <div class="mini_cart_wrapper">
                                 <a href="javascript:void(0)"><img style="width: 30px; height: 30px;" src="{% static 'images/icon/wish.png' %}" alt=""></a>
@@ -100,23 +101,25 @@
                             </div> -->
                             <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
                             <div class="mini_cart_wrapper">
-                                <a href="javascript:void(0)"><img src="{% static 'images/shopping-bag.png' %}" alt=""></a>
+                                <a href="javascript:void(0)"><img src="{% static 'images/shopping-bag.png' %}"
+                                        alt=""></a>
                                 <span class="cart_quantity">{{cartItems}}</span>
                                 <!--mini cart-->
                                 <div class="mini_cart">
                                     {% for item in items %}
                                     <div class="cart_item">
-                                       <div class="cart_img">
-                                           <a href=""><img src="{{item.product.image.url}}" alt=""></a>
-                                       </div>
+                                        <div class="cart_img">
+                                            <a href=""><img src="{{item.product.image.url}}" alt=""></a>
+                                        </div>
                                         <div class="cart_info">
                                             <a href="">{{item.product.product_name}}</a>
-                                            <p>Qty: {{item.quantity}} X <span> Ksh. {{item.product.new_price}} </span></p>    
+                                            <p>Qty: {{item.quantity}} X <span> Ksh. {{item.product.new_price}} </span>
+                                            </p>
                                         </div>
                                     </div>
                                     {% endfor %}
                                     <div class="mini_cart_footer">
-                                       <div class="cart_button">
+                                        <div class="cart_button">
                                             <a href="{% url 'cart' %}">View cart</a>
                                         </div>
                                     </div>
@@ -152,7 +155,7 @@
                                         <li><a href="{% url 'makeshop' %}">Makeshop</a></li>
                                         <li><a href="{% url 'my_shop' %}">My Shop</a></li>
                                         {% if user.is_authenticated %}
-                                        <a href="{% url 'logout' %}">LogOut</a> 
+                                        <a href="{% url 'logout' %}">LogOut</a>
                                         {% else %}
                                         <li><a href="{% url 'register' %}">Register/Login</a></li>
                                         {% endif %}
@@ -169,9 +172,13 @@
                         <div style="text-align: start;" class="Offcanvas_footer">
                             <span><a href="#"><i class="fa fa-envelope-o"></i> onesmuskimanzi254@gmail.com </a></span>
                             <ul>
-                                <li><a style="background-color: green;" class="whatsapp" href="https://chat.whatsapp.com/H7fUiSiMsLS3uDy3ZRMH9A" title="Whatsapp"><i class="fa fa-whatsapp"></i></a></li> Join Whatsapp Group <br><br>
-                                <li class="facebook"><a href="https://www.instagram.com/kim_onesmuske/"><i class="fa fa-instagram"></i></a></li> Instagram <br><br>
-                                <li class="twitter"><a href="https://twitter.com/Kiim844"><i class="fa fa-twitter"></i></a></li> Twitter <br><br>
+                                <li><a style="background-color: green;" class="whatsapp"
+                                        href="https://chat.whatsapp.com/H7fUiSiMsLS3uDy3ZRMH9A" title="Whatsapp"><i
+                                            class="fa fa-whatsapp"></i></a></li> Join Whatsapp Group <br><br>
+                                <li class="facebook"><a href="https://www.instagram.com/kim_onesmuske/"><i
+                                            class="fa fa-instagram"></i></a></li> Instagram <br><br>
+                                <li class="twitter"><a href="https://twitter.com/Kiim844"><i
+                                            class="fa fa-twitter"></i></a></li> Twitter <br><br>
                             </ul>
                         </div>
                     </div>
@@ -179,13 +186,12 @@
             </div>
         </div>
     </div>
-    <!--Offcanvas menu area
-    
+
     <header>
         <div class="main_header">
             <!--header top start-->
             <div class="header_top">
-                <div class="container">  
+                <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-6">
                             <div class="support_info">
@@ -195,15 +201,16 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="top_right text-right">
                                 <ul>
-                                    <li><a href="{% url 'makeshop' %}">Makeshop</a></li> 
+                                    <li><a href="{% url 'makeshop' %}">Makeshop</a></li>
                                     {% if user.is_authenticated %}
-                                    <li><a href="{% url 'logout' %}">LogOut</a></li> 
-                                    <img style="width: 40px;height: 40px;border-radius: 50%;" src="{{request.user.client.profile_pic.url}}" alt="">
+                                    <li><a href="{% url 'logout' %}">LogOut</a></li>
+                                    <img style="width: 40px;height: 40px;border-radius: 50%;"
+                                        src="{{request.user.client.profile_pic.url}}" alt="">
                                     {% else %}
-                                    <li><a href="{% url 'register' %}">LogIn</a></li> 
+                                    <li><a href="{% url 'register' %}">LogIn</a></li>
                                     {% endif %}
                                 </ul>
-                            </div>   
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -221,20 +228,21 @@
                         <div class="col-lg-9 col-md-6">
                             <div class="middel_right">
                                 <div class="search_container">
-                                   <!-- <form action="" method="GET">
+                                    <!-- <form action="" method="GET">
                                         <div class="search_box">
                                             <input name="q" placeholder="Search product..." type="text" required>
                                             <button type="submit">Search</button> 
                                         </div>
                                     </form> -->
-                                </div> 
+                                </div>
                                 <div class="middel_right_info">
                                     <div class="mini_cart_wrapper">
-                                        <a href="javascript:void(0)"><img style="width: 30px; height: 30px;" src="{% static 'images/icon/wish.png' %}" alt=""></a>
+                                        <a href="javascript:void(0)"><img style="width: 30px; height: 30px;"
+                                                src="{% static 'images/icon/wish.png' %}" alt=""></a>
                                         <span class="cart_quantity">0</span>
                                         <div class="mini_cart">
                                             <div class="cart_item">
-                                               <!-- <div class="cart_img">
+                                                <!-- <div class="cart_img">
                                                    <a href="#"><img src="{% static 'images/s-product/product.jpg' %}" alt=""></a>
                                                </div>
                                                 <div class="cart_info">
@@ -260,23 +268,25 @@
                                     </div>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <div class="mini_cart_wrapper">
-                                        <a href="javascript:void(0)"><img src="{% static 'images/shopping-bag.png' %}" alt=""></a>
+                                        <a href="javascript:void(0)"><img src="{% static 'images/shopping-bag.png' %}"
+                                                alt=""></a>
                                         <span class="cart_quantity">{{cartItems}}</span>
                                         <!--mini cart-->
                                         <div class="mini_cart">
                                             {% for item in items %}
                                             <div class="cart_item">
-                                               <div class="cart_img">
-                                                   <a href=""><img src="{{item.product.image.url}}" alt=""></a>
-                                               </div>
+                                                <div class="cart_img">
+                                                    <a href=""><img src="{{item.product.image.url}}" alt=""></a>
+                                                </div>
                                                 <div class="cart_info">
                                                     <a href="">{{item.product.product_name}}</a>
-                                                    <p>Qty: {{item.quantity}} X <span> Ksh. {{item.product.new_price}} </span></p>    
+                                                    <p>Qty: {{item.quantity}} X <span> Ksh. {{item.product.new_price}}
+                                                        </span></p>
                                                 </div>
                                             </div>
                                             {% endfor %}
                                             <div class="mini_cart_footer">
-                                               <div class="cart_button">
+                                                <div class="cart_button">
                                                     <a href="{% url 'cart' %}">View cart</a>
                                                 </div>
                                             </div>
@@ -296,12 +306,12 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-12 col-md-12">
-                            <div class="main_menu menu_position"> 
-                                <nav>  
+                            <div class="main_menu menu_position">
+                                <nav>
                                     <ul>
                                         <li><a href="/">home</a></li>
                                         <!-- <li><a href="{% url 'hot' %}">Hot</a></li> -->
-                                        
+
                                         <li><a class="active" href="#">Categories <i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
                                                 <li><a href="{% url 'fashion' %}">Fashion</a></li>
@@ -330,16 +340,24 @@
                                         <li><a href="{% url 'contact_us' %}"> Contact Us</a></li>
                                         <li><a href="{% url 'about_us' %}"> About Us</a></li>
                                         <li><a href="{% url 'privacy_policy' %}"> Privacy policy</a></li>
-                                    </ul>  
-                                </nav> 
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!--header bottom end-->
-        </div> 
+        </div>
     </header>
+    {% for message in messages %}
+    <div style="position: fixed; left: 50%; transform: translate(-50%, -50%); width: 60%; z-index: 9999;" class="alert {{message.tags}} alert-dismissible" role="alert">
+        <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{message | safe}}
+    </div>
+    {% endfor %}
 
 
 
@@ -347,5 +365,14 @@
 
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
+    <script>
+
+        document.getElementById("alarmmsg").innerHTML = msg;
+
+        setTimeout(function () {
+            document.getElementById("alarmmsg").innerHTML = '';
+        }, 3000);
+    </script>
 </body>
+
 </html>

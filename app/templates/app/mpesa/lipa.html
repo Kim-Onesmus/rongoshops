@@ -1,57 +1,55 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
-    <div class="breadcrumbs_area">
-        <div class="container">   
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb_content">
-                        <ul>
-                            <li><a href="/">home</a></li>
-                            <li>Request Lipa na M-Pesa</li>
-                        </ul>
-                    </div>
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/">home</a></li>
+                        <li>Request Lipa na M-Pesa</li>
+                    </ul>
                 </div>
             </div>
-        </div>         
+        </div>
     </div>
-
-	<section class="account">
-		<div class="container">
-			<div class="row justify-content-center">
-                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
-                    <div style="box-shadow: 0px 0 30px 10px #727070;" class="account-content">
-                        {% for message in messages %}
-                        <p style="color: green;">{{message}}</p>
-                        {% endfor %}
-                        <p>To request Lipa na M-Pesa means that customers can make payments of your products online, 
-                            either before or after Delivery. <br>
-                            Fill the form below to make the request
-                        </p>
-                        <hr><br>
-                        <form action="" method="POST">
-                            {% csrf_token %}
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="single-acc-field">
-                                        <label for="name">M-Pesa Business Short Code</label>
-                                        <input type="number" name="short_code" placeholder="Enter M-Pesa Business Short Code" id="name" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="single-acc-field">
-                                        <label for="email">Accoutn Reference</label>
-                                        <input type="text" name="reference" placeholder="Enter Accoutn Refernce" id="email" required>
-                                    </div>
+</div>
+<section class="account">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
+                <div style="box-shadow: 0px 0 30px 10px #727070;" class="account-content">
+                    <p>To request Lipa na M-Pesa means that customers can make payments of your products online,
+                        either before or after Delivery. <br>
+                        Fill the form below to make the request
+                    </p>
+                    <hr><br>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="single-acc-field">
+                                    <label for="name">M-Pesa Business Short Code</label>
+                                    <input type="number" name="short_code"
+                                        placeholder="Enter M-Pesa Business Short Code" id="name" required>
                                 </div>
                             </div>
-                            <div class="single-acc-field">
-                                <button type="submit">Request</button>
+                            <div class="col-lg-6">
+                                <div class="single-acc-field">
+                                    <label for="email">Accoutn Reference</label>
+                                    <input type="text" name="reference" placeholder="Enter Accoutn Refernce" id="email"
+                                        required>
+                                </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="single-acc-field">
+                            <button type="submit">Request</button>
+                        </div>
+                    </form>
                 </div>
-			</div>
-		</div>
-	</section>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock content %}
