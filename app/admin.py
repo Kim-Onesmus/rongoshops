@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Client, Shop, Product, Contact
+from .models import Client, Shop, Product, Contact, LipaNaMpesa
 
 # Register your models here.
 
@@ -21,3 +21,7 @@ class ProductTable(admin.ModelAdmin):
 @admin.register(Contact)
 class ContactTable(admin.ModelAdmin):
     list_display = ('name', 'email', 'message')
+    
+@admin.register(LipaNaMpesa)
+class LipaNaMpesa(admin.ModelAdmin):
+    list_display = ('short_code', 'reference')

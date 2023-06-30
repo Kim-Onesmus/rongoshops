@@ -273,6 +273,7 @@ def addProduct(request, pk):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.info(request, 'Product added')
             return redirect('my_shop')
 
     context = {'form':form}
@@ -334,7 +335,7 @@ def updateShop(request, pk):
         form = ShopForm(request.POST, instance=shop)
         if form.is_valid():
             form.save()
-            
+            messages.info(request, 'Shop Updated')
             return redirect('my_shop')
     context = {'form':form, 'shop':shop}
     return render(request, 'app/account/makeshop.html', context)
@@ -344,6 +345,7 @@ def deleteShop(request, pk):
     shop = Shop.objects.get(id=pk)
     if request.method == 'POST':
         shop.delete()
+        messages.info(request, 'Shop Deleted')
         return redirect('my_shop')
     return render(request, 'app/delete.html', {'obj':shop})
 
@@ -355,6 +357,7 @@ def updateProduct(request, pk):
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
             form.save()
+            messages.info(request, 'Product Updated')
             return redirect('my_shop')
 
     context = {'form':form}
@@ -366,6 +369,7 @@ def deleteProduct(request, pk):
     product = Product.objects.get(id=pk)
     if request.method == 'POST':
         product.delete()
+        messages.info(request, 'Product Deleted')
         return redirect('my_shop')
     return render(request, 'app/delete.html', {'obj':product})
 
@@ -412,6 +416,7 @@ def Register(request):
 
             if user is not None:
                 auth.login(request, user)  # Log in the existing user
+                messages.info(request, 'Logged Successfully')
                 return redirect('my_account')
             else:
                 messages.error(request, 'Invalid login details')
@@ -420,16 +425,19 @@ def Register(request):
         return render(request, 'app/account/register.html')
     return render(request, 'app/account/register.html')
 
-@login_required(login_url='login')
+@login_required(login_url='register')
 def logOut(request):
     if request.method == 'POST':
         auth.logout(request)
+        messages.info(request, 'Logged Out Successfully')
         return redirect('home')
     return render(request, 'app/account/logout.html')
 
 # Other
-
+@login_required(login_url='register')
 def Lipa(request):
+    user = request.user
+    
     if request.method == 'POST':
         short_code = request.POST['short_code']
         reference = request.POST['reference']
@@ -446,7 +454,7 @@ def Lipa(request):
                 message = f'Hello {user.username}, thank you for requesting Lipa Na M-Pesa, once we Intergrate your business Short Code we will get back to you'
                 email_from = settings.EMAIL_HOST_USER
                 recipient_list = [user.email, ]
-                send_mail( subject, message, email_from, recipient_list )
+                send_mail(subject, message, email_from, recipient_list)
                 
                 messages.info(request, 'Request Submitted Succesfully')
                 return redirect('lipa')
