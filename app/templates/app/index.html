@@ -398,7 +398,7 @@
             </div>
             <div class="row justify-content-center">
                 {% for data in shop %}
-                <div style="margin: 10px;" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-tranding">
                         <a href="{% url 'shopproduct' data.id %}">
                             <div class="tranding-pro-img">
@@ -416,6 +416,7 @@
                         </a>
                     </div>
                 </div>
+                <br>
                 {% endfor %}
             </div>
         </div>
